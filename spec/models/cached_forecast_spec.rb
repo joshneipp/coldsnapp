@@ -18,4 +18,12 @@ describe CachedForecast do
             end
         end
     end
+
+    describe 'low_temperatures' do
+        let(:forecast) { FactoryBot.build(:cached_forecast, :not_expired) }
+
+        it 'saves 10 days of forecasted temperatures' do
+            expect(forecast.low_temperatures.length).to eq(10)
+        end
+    end
 end

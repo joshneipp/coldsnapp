@@ -15,6 +15,7 @@ FactoryBot.define do
         end
         
         trait :not_expired do
+            low_temperatures { [33, 28, 35, 36, 37, 38, 42, 40, 41, 39] }
             created_at { Time.zone.now }
         end
 
