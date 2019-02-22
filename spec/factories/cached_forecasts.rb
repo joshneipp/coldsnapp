@@ -1,6 +1,6 @@
 FactoryBot.define do
     factory :cached_forecast do
-        zip_code { "12345" }
+        zip_code { '12345' }
 
         trait :above_freezing do
             low_temperatures { [33, 34, 35, 36, 37, 38, 42, 40, 41, 39] }
