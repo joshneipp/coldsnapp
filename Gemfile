@@ -38,6 +38,7 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'spring-commands-rspec'
   gem 'factory_bot_rails', require: false
+  gem 'open-weather', '~> 0.12.0'
 end
 
 group :development do
