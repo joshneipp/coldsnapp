@@ -15,24 +15,30 @@ describe ForecastCacheService do
     context 'when a cached forecast exists and is more than one day old' do
 
       it 'runs the weather client service' do
-        expect_any_instance_of(WeatherClientService).to receive(:low_temperatures)
+        expect_any_instance_of(WeatherClientService).to receive(:seven_day_forecast_low_temperatures)
         subject
       end
 
       it 'saves a new CachedForecast' do
-        expect{subject}.to change{CachedForecast.count}.by(1)
+        expect do
+          subject
+        end
+        .to change { CachedForecast.count }.by(1)
       end
     end
     
     context 'when a cached forecast does not exist' do
 
       it 'runs the weather client service' do
-        expect_any_instance_of(WeatherClientService).to receive(:low_temperatures)
+        expect_any_instance_of(WeatherClientService).to receive(:seven_day_forecast_low_temperatures)
         subject
       end
   
       it 'saves a new CachedForecast' do
-        expect{subject}.to change{CachedForecast.count}.by(1)
+        expect do
+          subject
+        end
+        .to change { CachedForecast.count }.by(1)
       end
     end
   end
