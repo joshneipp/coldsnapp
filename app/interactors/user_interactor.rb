@@ -6,6 +6,12 @@ class UserInteractor < ActiveInteraction::Base
   end
 
   def execute
-    raise InvalidZipCodeError unless settings[:zip_code].length == 5
+    raise InvalidZipCodeError unless zip_code_length_five?(settings[:zip_code])
+  end
+
+  private 
+
+  def zip_code_length_five?(zip_code)
+    zip_code.length == 5 && zip_code.to_i.to_s.length == 5
   end
 end
