@@ -19,6 +19,8 @@ gem 'jbuilder', '~> 2.5'
 gem 'redis', '~> 4.0'
 gem 'sidekiq', '~> 5.2.5'
 gem 'bcrypt', '~> 3.1.7'
+gem 'active_interaction', '~> 3.7'
+
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
