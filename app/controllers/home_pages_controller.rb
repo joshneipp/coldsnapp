@@ -16,3 +16,5 @@ class HomePagesController < ApplicationController
     logger.debug '-----####################-----'
   end
 end
+
+

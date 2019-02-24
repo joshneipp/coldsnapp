@@ -11,6 +11,7 @@ class WeatherClientService
 
   def initialize(zip_code)
     @zip_code = zip_code
+    Rails.logger.debug "#{Time.zone.now} -- #{self.class.to_s}"
   end
 
   def forecast_args

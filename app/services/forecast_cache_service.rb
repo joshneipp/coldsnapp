@@ -1,8 +1,5 @@
 class ForecastCacheService
 
-  class NullForecast < RuntimeError; end
-  class ExpiredForecast < RuntimeError; end
-
   def initialize(zip_code)
     @zip_code = zip_code
   end
@@ -18,4 +15,3 @@ class ForecastCacheService
     CachedForecast.create(zip_code: @zip_code, low_temperatures: low_temperatures)
   end
 end
-
