@@ -5,8 +5,14 @@ class HomePagesController < ApplicationController
   end
 
   def log_current_method(method)
+    log_delimiter
     logger.tagged("#{Time.zone.now} -- #{self.class.to_s}") do
-      logger.debug "#{method.to_s}"
+      {logger.debug "#{method.to_s}"}
     end
+    log_delimiter
+  end
+
+  def log_delimiter
+    logger.debug '-----####################-----'
   end
 end

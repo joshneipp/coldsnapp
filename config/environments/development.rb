@@ -6,8 +6,6 @@ Rails.application.configure do
   # since you don't have to restart the web server when you make code changes.
   config.cache_classes = false
 
-  # config.logger = Logger.new(STDOUT)
-
   <<-LOGGING
   When something is logged, it's printed into the corresponding 
   log if the log level of the message is equal to or higher than 
