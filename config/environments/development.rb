@@ -6,6 +6,23 @@ Rails.application.configure do
   # since you don't have to restart the web server when you make code changes.
   config.cache_classes = false
 
+  # config.logger = Logger.new(STDOUT)
+
+  <<-LOGGING
+  When something is logged, it's printed into the corresponding 
+  log if the log level of the message is equal to or higher than 
+  the configured log level. If you want to know the current log 
+  level, you can call the Rails.logger.level method.
+
+  The available log levels are: :debug, :info, :warn, :error, 
+  :fatal, and :unknown, corresponding to the log level numbers 
+  from 0 up to 5, respectively. To change the default log level, 
+  use config.log_level = :warn # In any environment initializer, or
+  Rails.logger.level = 0 # at any time
+  LOGGING
+
+  config.log_level = :debug
+
   # Do not eager load code on boot.
   config.eager_load = false
 
