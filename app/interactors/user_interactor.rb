@@ -1,6 +1,8 @@
 class UserInteractor < ActiveInteraction::Base
   class InvalidZipCodeError < StandardError; end
 
+  string :username
+  string :password
   hash :settings do
     string :zip_code
   end

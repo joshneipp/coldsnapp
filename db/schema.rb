@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_24_122531) do
+ActiveRecord::Schema.define(version: 2019_02_27_144157) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,11 @@ ActiveRecord::Schema.define(version: 2019_02_24_122531) do
     t.json "settings"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "password_digest"
+    t.string "username"
+    t.string "sms_number"
+    t.datetime "sms_sent_at"
+    t.string "sms_verification_code"
   end
 
 end
