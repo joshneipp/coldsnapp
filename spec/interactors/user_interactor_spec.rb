@@ -3,7 +3,13 @@ require 'rails_helper'
 describe UserInteractor do
 
   subject { UserInteractor.run!(params) }
-  let(:params) { {"settings": settings} }
+  let(:params) do
+    {
+      username: 'valid_user_name',
+      password: 'valid_password',
+      settings: settings
+    } 
+  end
 
   context 'invalid zip code that is too short' do
     
