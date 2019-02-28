@@ -20,6 +20,8 @@ gem 'redis', '~> 4.0'
 gem 'sidekiq', '~> 5.2.5'
 gem 'bcrypt', '~> 3.1.7'
 gem 'active_interaction', '~> 3.7'
+gem 'open-weather', '~> 0.12.0'
+gem 'twilio-ruby', '~> 5.20.1'
 
 
 # Use ActiveStorage variant
@@ -35,7 +37,7 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'spring-commands-rspec'
   gem 'factory_bot_rails', require: false
-  gem 'open-weather', '~> 0.12.0'
+  gem 'dotenv-rails', '~> 2.7.1'
 end
 
 group :development do
