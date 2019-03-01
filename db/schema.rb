@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_27_144157) do
+ActiveRecord::Schema.define(version: 2019_02_28_172523) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,8 +29,9 @@ ActiveRecord::Schema.define(version: 2019_02_27_144157) do
     t.string "password_digest"
     t.string "username"
     t.string "sms_number"
-    t.datetime "sms_sent_at"
     t.string "sms_verification_code"
+    t.datetime "sms_verification_sent_at"
+    t.boolean "sms_verified", default: false
   end
 
 end

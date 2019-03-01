@@ -3,6 +3,9 @@ class UserInteractor < ActiveInteraction::Base
 
   string :username
   string :password
+  string :sms_number, default: nil
+  date_time :sms_sent_at, default: nil
+  string :sms_verification_code, default: nil
   hash :settings do
     string :zip_code
   end

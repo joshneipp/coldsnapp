@@ -4,4 +4,5 @@ class User < ApplicationRecord
   store_accessor :settings, :zip_code, :notify_of_frost_warning
   has_secure_password
   validates :username, presence: true
+
 end
