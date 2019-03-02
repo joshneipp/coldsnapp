@@ -1,4 +1,4 @@
-class UserInteractor < ActiveInteraction::Base
+class UserRegistrationInteractor < ActiveInteraction::Base
   class InvalidZipCodeError < StandardError; end
 
   string :username
@@ -12,6 +12,8 @@ class UserInteractor < ActiveInteraction::Base
 
   def execute
     raise InvalidZipCodeError unless zip_code_length_five?(settings[:zip_code])
+    user = User.new(username: username, password: password, sms_number: sms_number, settings: {})
+    UserRegistrationService.new(User.new).execute
   end
 
   private 

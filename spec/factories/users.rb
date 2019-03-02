@@ -6,7 +6,7 @@ FactoryBot.define do
     sms_verification_code { '123123' }
     sms_verification_sent_at { nil }
     
-    trait :unverified do
+    factory :unverified_user do
       sms_verified { false }
     end
   end

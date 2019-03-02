@@ -1,8 +1,8 @@
 require 'rails_helper'
 
-describe RegisterUserService do
+describe UserRegistrationService do
   describe '.create_user' do
-    subject { RegisterUserService.new(new_user).execute }
+    subject { UserRegistrationService.new(new_user).execute }
     let(:new_user) { User.new(user_params) }
 
     context 'valid params' do
@@ -10,7 +10,7 @@ describe RegisterUserService do
         {
           username: 'myusername',
           password: 'mypassword',
-          sms_number: '+11231231234',
+          sms_number: ENV.fetch('TWILIO_TEST_SMS_TO'),
           sms_verification_sent_at: nil,
           sms_verification_code: nil,
           settings: {
@@ -35,6 +35,12 @@ describe RegisterUserService do
       it 'creates a new user that is not sms_verified' do
         subject
         expect(new_user).not_to be_sms_verified
+      end
+
+      it 'sends an sms to the new user' do
+        allow_any_instance_of(TwilioService).to receive(:send_message)
+        expect_any_instance_of(TwilioService).to receive(:send_message)
+        subject
       end
     end
   end

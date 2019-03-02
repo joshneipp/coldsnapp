@@ -1,12 +1,13 @@
 require 'rails_helper'
 
-describe UserInteractor do
+describe UserRegistrationInteractor do
 
-  subject { UserInteractor.run!(params) }
+  subject { UserRegistrationInteractor.run!(params) }
   let(:params) do
     {
       username: 'valid_user_name',
       password: 'valid_password',
+      # sms_number: '1231231234',
       settings: settings
     } 
   end
@@ -16,7 +17,7 @@ describe UserInteractor do
     let(:settings) { {"zip_code": "123"} }
 
     it 'raises an InvalidZipCodeError' do
-      expect{subject}.to raise_error(UserInteractor::InvalidZipCodeError)
+      expect{subject}.to raise_error(UserRegistrationInteractor::InvalidZipCodeError)
     end
   end
 
@@ -25,7 +26,7 @@ describe UserInteractor do
     let(:settings) { {"zip_code": "1234567"} }
 
     it 'raises an InvalidZipCodeError' do
-      expect{subject}.to raise_error(UserInteractor::InvalidZipCodeError)
+      expect{subject}.to raise_error(UserRegistrationInteractor::InvalidZipCodeError)
     end
   end
 
@@ -34,7 +35,7 @@ describe UserInteractor do
     let(:settings) { {"zip_code": "123ab"} }
 
     it 'raises an InvalidZipCodeError' do
-      expect{subject}.to raise_error(UserInteractor::InvalidZipCodeError)
+      expect{subject}.to raise_error(UserRegistrationInteractor::InvalidZipCodeError)
     end
   end
 
@@ -44,6 +45,15 @@ describe UserInteractor do
 
     it 'raises an InvalidInteractionError' do
       expect{subject}.to raise_error(ActiveInteraction::InvalidInteractionError)
+    end
+  end
+
+  context 'running the user registration service' do
+    let(:settings) { {"zip_code": "12345"} }
+    it 'runs the user registration service' do
+      allow_any_instance_of(UserRegistrationService).to receive(:execute)
+      expect_any_instance_of(UserRegistrationService).to receive(:execute)
+      subject
     end
   end
 end

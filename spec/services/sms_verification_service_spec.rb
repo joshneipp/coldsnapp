@@ -1,23 +1,30 @@
 require 'rails_helper'
 
 describe SmsVerificationService do
+  subject { SmsVerificationService.new(params).verify }
+  let(:user) { FactoryBot.create(:unverified_user) }
   context 'success' do
-    subject { SmsVerificationService.new(params).verify }
     let(:params) {
       {
         id: user.id,
         sms_verification_code: user.sms_verification_code
       }
     }
-    let(:user) { FactoryBot.create(:user, :unverified) }
 
     it 'is successful when the verification in params matches the users verification code' do
-      expect { subject }.to change { user.reload.sms_verified }.from(false).to(true)
+    expect { subject }.to change { user.reload.sms_verified }.from(false).to(true)
     end
   end
-
+  
   context 'failure' do
-    it 'is unsuccessful when the verification code in params does not matche the users verification code' do
+    let(:params) {
+      {
+        id: user.id,
+        sms_verification_code: 'invalidcode'
+      }
+    }
+    it 'is unsuccessful when the verification in params does not match the users verification code' do
+      expect { subject }.not_to change { user.reload.sms_verified }
     end
   end
 end
