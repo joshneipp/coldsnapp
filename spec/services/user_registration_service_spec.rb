@@ -55,6 +55,7 @@ describe UserRegistrationService do
   end
 end
 
+# TODO extract this into a helper
 def stub_twilio_request
   allow_any_instance_of(TwilioService).to receive(:send_message)
 end

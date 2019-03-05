@@ -10,6 +10,7 @@ class UserRegistrationService
       send_sms_verification
       Rails.logger.debug "#{Time.zone.now}" " -- " "New user registered"
     else
+      byebug
       raise UserRegistrationError
     end
   end
