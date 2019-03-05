@@ -10,7 +10,6 @@ class TwilioService
   end
 
   def send_message(from:, to:, body:)
-    byebug
     @sms_client.messages.create(from: from, to: to, body: body)
   end
 

@@ -9,6 +9,7 @@ describe User do
   it { is_expected.to respond_to(:notify_of_frost_warning) }
   it { is_expected.to respond_to(:sms_verification_sent_at) }
   it { is_expected.to respond_to(:sms_verification_code) }
+  it { is_expected.to respond_to(:next_forecast_check_time) }
 
   describe 'creating a user' do
     subject { User.create(user_create_params) }

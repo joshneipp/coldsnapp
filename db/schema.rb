@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_28_172523) do
+ActiveRecord::Schema.define(version: 2019_03_04_141847) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 2019_02_28_172523) do
     t.string "sms_verification_code"
     t.datetime "sms_verification_sent_at"
     t.boolean "sms_verified", default: false
+    t.datetime "next_forecast_check_time"
   end
 
 end

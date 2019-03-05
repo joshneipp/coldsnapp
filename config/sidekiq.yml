@@ -1,1 +1,5 @@
 :logfile: ./log/development.log
+:schedule:
+  user_forecast:
+    cron: '0 * * * * *'   # Run once per minute
+    class: UserForecastWorker

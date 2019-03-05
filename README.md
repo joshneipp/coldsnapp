@@ -1,24 +1,13 @@
-# README
+# coldsnapp
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### Sign up to get notifications by text / email when freezing temperatures are forecast in your area.
 
-Things you may want to cover:
+### Made possible by these APIs:
 
-* Ruby version
+- OpenWeatherMap
+- Twilio
 
-* System dependencies
+#### TODO
+- deploy to Heroku
+- build out React.js frontend
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
