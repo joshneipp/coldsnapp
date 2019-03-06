@@ -1,0 +1,8 @@
+<%= form_with url: '/user_registrations', local: true do |form| %>
+  <%= form.text_field :username %>
+  <%= form.text_field :password %>
+  <%= form.text_field :sms_number %>
+  <%= form.label :sms_number %>
+  <%= form.text_field 'settings[zip_code]' %>
+  <%= form.submit %>
+<% end %>

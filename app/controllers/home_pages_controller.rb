@@ -1,4 +1,5 @@
 class HomePagesController < ApplicationController
+
   def index
     log_current_method(__method__)
     MinuteWorker.perform_async('some_arg')
