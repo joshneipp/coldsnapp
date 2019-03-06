@@ -1,0 +1,53 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://api.openweathermap.org/data/2.5/forecast/daily?appid=<WEATHERAPIKEY>&units=imperial&zip=27278
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - api.openweathermap.org
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - openresty
+      Date:
+      - Wed, 06 Mar 2019 00:59:21 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '1935'
+      Connection:
+      - keep-alive
+      X-Cache-Key:
+      - "/data/2.5/forecast/daily?units=imperial&zip=27278"
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Methods:
+      - GET, POST
+    body:
+      encoding: UTF-8
+      string: '{"city":{"id":420021209,"name":"Durham","coord":{"lon":-79.0993,"lat":36.0752},"country":"US","population":0},"cod":"200","message":10.5959394,"cnt":7,"list":[{"dt":1551805200,"temp":{"day":34.95,"min":26.94,"max":34.95,"night":26.94,"eve":34.95,"morn":34.95},"pressure":1017.77,"humidity":53,"weather":[{"id":800,"main":"Clear","description":"sky
+        is clear","icon":"01n"}],"speed":8.19,"deg":262,"clouds":0},{"dt":1551891600,"temp":{"day":35.53,"min":19.63,"max":39.97,"night":19.63,"eve":34.48,"morn":19.8},"pressure":1027.18,"humidity":39,"weather":[{"id":800,"main":"Clear","description":"sky
+        is clear","icon":"01d"}],"speed":9.35,"deg":290,"clouds":0},{"dt":1551978000,"temp":{"day":44.92,"min":16.05,"max":47.8,"night":35.06,"eve":39.36,"morn":16.05},"pressure":1028.82,"humidity":37,"weather":[{"id":800,"main":"Clear","description":"sky
+        is clear","icon":"02d"}],"speed":5.95,"deg":279,"clouds":8},{"dt":1552064400,"temp":{"day":39.65,"min":31.21,"max":39.65,"night":31.21,"eve":36.99,"morn":35.42},"pressure":1022.38,"humidity":0,"weather":[{"id":502,"main":"Rain","description":"heavy
+        intensity rain","icon":"10d"}],"speed":6.29,"deg":31,"clouds":100,"rain":16.94},{"dt":1552150800,"temp":{"day":47.86,"min":26.71,"max":47.86,"night":34.75,"eve":41.31,"morn":26.71},"pressure":1027.42,"humidity":0,"weather":[{"id":800,"main":"Clear","description":"sky
+        is clear","icon":"01d"}],"speed":4.59,"deg":48,"clouds":0},{"dt":1552237200,"temp":{"day":44.11,"min":34.11,"max":45.64,"night":44.74,"eve":45.64,"morn":34.11},"pressure":1025.29,"humidity":0,"weather":[{"id":501,"main":"Rain","description":"moderate
+        rain","icon":"10d"}],"speed":3.44,"deg":21,"clouds":99,"rain":3.74},{"dt":1552323600,"temp":{"day":66.97,"min":40.46,"max":66.97,"night":43,"eve":55.94,"morn":40.46},"pressure":1022.76,"humidity":0,"weather":[{"id":500,"main":"Rain","description":"light
+        rain","icon":"10d"}],"speed":3.94,"deg":354,"clouds":8,"rain":0.79}]}'
+    http_version: 
+  recorded_at: Wed, 06 Mar 2019 00:59:21 GMT
+recorded_with: VCR 4.0.0

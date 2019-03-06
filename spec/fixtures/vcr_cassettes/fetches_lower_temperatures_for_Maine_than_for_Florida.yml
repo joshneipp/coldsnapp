@@ -1,0 +1,102 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://api.openweathermap.org/data/2.5/forecast/daily?appid=<WEATHERAPIKEY>&units=imperial&zip=04457
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - api.openweathermap.org
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - openresty
+      Date:
+      - Wed, 06 Mar 2019 01:00:50 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '1931'
+      Connection:
+      - keep-alive
+      X-Cache-Key:
+      - "/data/2.5/forecast/daily?units=imperial&zip=04457"
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Methods:
+      - GET, POST
+    body:
+      encoding: UTF-8
+      string: '{"city":{"id":420016193,"name":"Bangor","coord":{"lon":-68.5048,"lat":45.3622},"country":"US","population":0},"cod":"200","message":13.6812515,"cnt":7,"list":[{"dt":1551801600,"temp":{"day":13.68,"min":10.47,"max":13.68,"night":10.47,"eve":13.68,"morn":13.68},"pressure":1012.69,"humidity":58,"weather":[{"id":800,"main":"Clear","description":"sky
+        is clear","icon":"01d"}],"speed":4.05,"deg":283,"clouds":36},{"dt":1551888000,"temp":{"day":16.75,"min":8.42,"max":19.9,"night":8.42,"eve":15.4,"morn":10.42},"pressure":1010.62,"humidity":49,"weather":[{"id":600,"main":"Snow","description":"light
+        snow","icon":"13d"}],"speed":5.61,"deg":296,"clouds":36,"snow":0.48},{"dt":1551974400,"temp":{"day":13.41,"min":0.48,"max":14.63,"night":5.59,"eve":14.23,"morn":2.89},"pressure":1020.3,"humidity":52,"weather":[{"id":600,"main":"Snow","description":"light
+        snow","icon":"13d"}],"speed":5.19,"deg":271,"clouds":0,"snow":0.05},{"dt":1552060800,"temp":{"day":23.54,"min":5.5,"max":23.54,"night":6.64,"eve":21,"morn":5.5},"pressure":1024.42,"humidity":0,"weather":[{"id":600,"main":"Snow","description":"light
+        snow","icon":"13d"}],"speed":6.51,"deg":245,"clouds":36,"snow":0.09},{"dt":1552147200,"temp":{"day":27.73,"min":3.79,"max":27.73,"night":3.79,"eve":13.71,"morn":4.48},"pressure":1030.7,"humidity":0,"weather":[{"id":800,"main":"Clear","description":"sky
+        is clear","icon":"01d"}],"speed":3.4,"deg":317,"clouds":48},{"dt":1552233600,"temp":{"day":35.11,"min":4.82,"max":35.11,"night":29.53,"eve":30.13,"morn":4.82},"pressure":1033.33,"humidity":0,"weather":[{"id":601,"main":"Snow","description":"snow","icon":"13d"}],"speed":9.19,"deg":200,"clouds":40,"snow":1.94},{"dt":1552320000,"temp":{"day":38.86,"min":30.56,"max":38.86,"night":32.61,"eve":34.21,"morn":30.56},"pressure":1019.04,"humidity":0,"weather":[{"id":600,"main":"Snow","description":"light
+        snow","icon":"13d"}],"speed":3.4,"deg":76,"clouds":96,"rain":0.32,"snow":0.91}]}'
+    http_version: 
+  recorded_at: Wed, 06 Mar 2019 01:00:50 GMT
+- request:
+    method: get
+    uri: http://api.openweathermap.org/data/2.5/forecast/daily?appid=<WEATHERAPIKEY>&units=imperial&zip=33101
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - api.openweathermap.org
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - openresty
+      Date:
+      - Wed, 06 Mar 2019 01:00:50 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '1922'
+      Connection:
+      - keep-alive
+      X-Cache-Key:
+      - "/data/2.5/forecast/daily?units=imperial&zip=33101"
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Methods:
+      - GET, POST
+    body:
+      encoding: UTF-8
+      string: '{"city":{"id":420008030,"name":"Miami","coord":{"lon":-80.1937,"lat":25.7743},"country":"US","population":0},"cod":"200","message":9.8251474,"cnt":7,"list":[{"dt":1551805200,"temp":{"day":71.64,"min":60.49,"max":71.64,"night":60.49,"eve":71.64,"morn":71.64},"pressure":1018.17,"humidity":66,"weather":[{"id":803,"main":"Clouds","description":"broken
+        clouds","icon":"04n"}],"speed":14.34,"deg":343,"clouds":64},{"dt":1551891600,"temp":{"day":69.94,"min":52.23,"max":71.98,"night":57.88,"eve":66.07,"morn":52.23},"pressure":1023.98,"humidity":64,"weather":[{"id":800,"main":"Clear","description":"sky
+        is clear","icon":"01d"}],"speed":16.28,"deg":6,"clouds":0},{"dt":1551978000,"temp":{"day":76.37,"min":55.71,"max":76.46,"night":67.32,"eve":70.86,"morn":55.71},"pressure":1023.46,"humidity":57,"weather":[{"id":801,"main":"Clouds","description":"few
+        clouds","icon":"02d"}],"speed":14.12,"deg":82,"clouds":20},{"dt":1552064400,"temp":{"day":78.08,"min":75.83,"max":80.64,"night":76.17,"eve":80.64,"morn":75.83},"pressure":1018.1,"humidity":0,"weather":[{"id":501,"main":"Rain","description":"moderate
+        rain","icon":"10d"}],"speed":19.35,"deg":187,"clouds":13,"rain":4.64},{"dt":1552150800,"temp":{"day":79.21,"min":73.24,"max":79.21,"night":74.3,"eve":75.33,"morn":73.24},"pressure":1016.78,"humidity":0,"weather":[{"id":500,"main":"Rain","description":"light
+        rain","icon":"10d"}],"speed":4.83,"deg":105,"clouds":72,"rain":1.01},{"dt":1552237200,"temp":{"day":77.29,"min":73.71,"max":77.29,"night":74.71,"eve":76.15,"morn":73.71},"pressure":1019.21,"humidity":0,"weather":[{"id":800,"main":"Clear","description":"sky
+        is clear","icon":"01d"}],"speed":3.53,"deg":191,"clouds":2},{"dt":1552323600,"temp":{"day":77.92,"min":72.95,"max":77.92,"night":76.26,"eve":77.09,"morn":72.95},"pressure":1019.28,"humidity":0,"weather":[{"id":800,"main":"Clear","description":"sky
+        is clear","icon":"01d"}],"speed":6.33,"deg":113,"clouds":1}]}'
+    http_version: 
+  recorded_at: Wed, 06 Mar 2019 01:00:50 GMT
+recorded_with: VCR 4.0.0

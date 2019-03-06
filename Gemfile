@@ -25,6 +25,8 @@ group :development, :test do
   gem 'factory_bot_rails', require: false
   gem 'dotenv-rails', '~> 2.7.1'
   gem 'faker', '~> 1.9.3'
+  gem 'vcr', '~> 4.0.0'
+  gem 'webmock', '~> 3.5.1'
 end
 
 group :development do

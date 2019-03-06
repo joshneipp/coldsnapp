@@ -13,17 +13,23 @@ describe TwilioService do
       }
     }
     it 'sends a message' do
-      expect { subject }.to change { client.message_list.size }.by(+1)
+      VCR.use_cassette 'sends a message' do
+        expect { subject }.to change { client.message_list.size }.by(+1)
+      end
     end
 
     it 'sends a message with the correct body' do
-      subject
-      expect(client.most_recent_message.body).to include(message_params[:body])
+      VCR.use_cassette 'sends a message with the correct body' do
+        subject
+        expect(client.most_recent_message.body).to include(message_params[:body])
+      end
     end
 
     it 'sends a message to the correct recipient' do
-      subject
-      expect(client.most_recent_message.to).to eq(message_params[:to])
+      VCR.use_cassette 'sends a message to the correct recipient' do
+        subject
+        expect(client.most_recent_message.to).to eq(message_params[:to])
+      end
     end
   end
 end

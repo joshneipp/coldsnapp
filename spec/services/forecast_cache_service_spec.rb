@@ -20,25 +20,31 @@ describe ForecastCacheService do
       end
 
       it 'saves a new CachedForecast' do
-        expect do
-          subject
+        VCR.use_cassette 'saves a new CachedForecast' do
+          expect do
+            subject
+          end
+          .to change { CachedForecast.count }.by(1)
         end
-        .to change { CachedForecast.count }.by(1)
       end
     end
     
     context 'when a cached forecast does not exist' do
 
       it 'runs the weather client service' do
-        expect_any_instance_of(WeatherClientService).to receive(:seven_day_forecast_low_temperatures)
-        subject
+        VCR.use_cassette 'runs the weather client service' do
+          expect_any_instance_of(WeatherClientService).to receive(:seven_day_forecast_low_temperatures)
+          subject
+        end
       end
   
       it 'saves a new CachedForecast' do
-        expect do
-          subject
+        VCR.use_cassette 'saves a new CachedForecast' do
+          expect do
+            subject
+          end
+          .to change { CachedForecast.count }.by(1)
         end
-        .to change { CachedForecast.count }.by(1)
       end
     end
   end
