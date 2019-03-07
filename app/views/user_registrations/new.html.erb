@@ -1,25 +1,29 @@
 
 <div class="container">
-<h2>Coldsnapp Signup</h2>
-  <%= form_with url: '/user_registrations', local: true do |form| %>
-  <div class="form">
+<%= image_tag("snowflake3", size: "60x60", id: 'snowflake') %>
+<div>
+  <span class="roboto font-24">coldsn</span><span class="roboto bold font-24">app</span>
+  <span class="roboto font-24">  signup</span>
+</div>
+  <%= form_with scope: :user, url: user_registrations_path, local: true do |form| %>
+  <div class="form roboto">
     <%= form.text_field :username %>
     <%= form.label :username %>
   </div>
-  <div class="form">
+  <div class="form roboto">
     <%= form.text_field :password %>
     <%= form.label :password %>
   </div>
-  <div class="form">
+  <div class="form roboto">
     <%= form.text_field :sms_number %>
     <%= form.label :sms_number %>
   </div>
-  <div class="form">
+  <div class="form roboto">
     <%= form.text_field 'settings[zip_code]' %>
     <%= form.label :zip_code %>
   </div>
   <div class="form">
-    <%= form.submit %>
+    <%= form.submit('Register', class: 'btn') %>
   </div>
   <% end %>
 </div>

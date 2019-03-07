@@ -10,4 +10,5 @@ Rails.application.routes.draw do
   # resources :user_registrations, only: [:new, :create, :show]
 
   resources :user_registrations
+  get 'register', to: 'user_registrations#new'
 end
