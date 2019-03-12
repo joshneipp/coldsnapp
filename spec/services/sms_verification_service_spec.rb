@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe SmsVerificationService do
-  subject { SmsVerificationService.new(params).verify }
+  subject { SmsVerificationService.new(params).run }
   let(:user) { FactoryBot.create(:unverified_user) }
   context 'success' do
     let(:params) {

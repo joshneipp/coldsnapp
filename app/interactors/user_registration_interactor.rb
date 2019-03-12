@@ -1,25 +1,31 @@
 class UserRegistrationInteractor < ActiveInteraction::Base
-  class InvalidZipCodeError < StandardError; end
 
-  string :username
-  string :password
-  string :sms_number, default: nil
-  date_time :sms_sent_at, default: nil
-  string :sms_verification_code, default: nil
-  hash :settings do
-    string :zip_code
+  hash :user do
+    string :username
+    string :password
+    string :sms_number, default: nil
+    date_time :sms_sent_at, default: nil
+    string :sms_verification_code, default: nil
+    hash :settings do
+      string :zip_code
+    end
   end
+
+  validates_with UserRegistration::UsernameValidator
+  validates_with UserRegistration::PasswordValidator
+  validates_with UserRegistration::PhoneNumberValidator
+  validates_with UserRegistration::ZipCodeValidator
 
   def execute
-    raise InvalidZipCodeError unless zip_code_length_five?(settings[:zip_code])
-    
-    user = User.new(username: username, password: password, sms_number: sms_number, settings: settings)
-    UserRegistrationService.new(user).execute
-  end
-
-  private 
-
-  def zip_code_length_five?(zip_code)
-    zip_code.length == 5 && zip_code.to_i.to_s.length == 5
+    begin
+      username = user[:username]
+      password = user[:password]
+      sms_number = user[:sms_number]
+      settings = user[:settings]
+      user = User.new(username: username, password: password, sms_number: sms_number, settings: settings)
+      response = UserRegistrationService.new(user).run
+    rescue UserRegistrationService::UserRegistrationError
+      errors.add(:base, 'Unable to register user')
+    end
   end
 end

@@ -5,7 +5,7 @@ class SmsVerificationService
     @verification_code = params.fetch(:sms_verification_code)
   end
 
-  def verify
+  def run
     user = User.find(@id)
     user.update_attributes(sms_verified: true) if matching_verification_code?(user)
   end

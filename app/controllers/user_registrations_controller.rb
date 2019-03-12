@@ -9,12 +9,11 @@ class UserRegistrationsController < ApplicationController
   end
 
   def create
-    @user_registration = User.new(params[:user])
     response = UserRegistrationInteractor.run(params)
     if response.valid?
       render json: { status: 200 }
     else
-      render json: { error: response.errors.full_messages.to_sentence }
+      render json: { error: response.errors.full_messages }, status: 400
     end
   end
 end

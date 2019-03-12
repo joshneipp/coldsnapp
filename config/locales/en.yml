@@ -31,3 +31,8 @@
 
 en:
   hello: "Hello world"
+
+  username_required: 'Username is required'
+  password_required: 'Password is required'
+  valid_phone_number_required: 'Phone number must be in the format 1231231234 or (123)123-1234 or 1 (123) 123-1234'
+  valid_zip_code_required: 'Zip code must be 5 digits'

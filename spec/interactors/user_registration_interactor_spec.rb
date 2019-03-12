@@ -2,57 +2,70 @@ require 'rails_helper'
 
 describe UserRegistrationInteractor do
 
-  subject { UserRegistrationInteractor.run!(params) }
-  let(:params) do
+  subject { UserRegistrationInteractor.run(params) }
+  let(:valid_params) do
     {
-      username: 'valid_user_name',
-      password: 'valid_password',
-      # sms_number: '1231231234',
-      settings: settings
-    } 
+      user: {
+        username: 'myusername',
+        password: 'valid_password',
+        sms_number: '1231231234',
+        settings: {
+          "zip_code": "12345"
+        }
+      }
+    }
   end
-
-  context 'invalid zip code that is too short' do
-    
-    let(:settings) { {"zip_code": "123"} }
-
-    it 'raises an InvalidZipCodeError' do
-      expect{subject}.to raise_error(UserRegistrationInteractor::InvalidZipCodeError)
+  
+  context 'with missing password' do
+    let(:params) { valid_params.deep_merge( { user: { password: ''} } ) }
+    it 'returns an invalid password error' do
+      expect(subject.errors.full_messages).to include('Password is required')
+    end
+  end
+  
+  context 'with missing username' do
+    let(:params) { valid_params.deep_merge( { user: { username: ''} } ) }
+    it 'returns an invalid username error' do
+      expect(subject.errors.full_messages).to include('Username is required')
     end
   end
 
-  context 'invalid zip code that is too long' do
-
-    let(:settings) { {"zip_code": "1234567"} }
-
-    it 'raises an InvalidZipCodeError' do
-      expect{subject}.to raise_error(UserRegistrationInteractor::InvalidZipCodeError)
+  context 'with invalid phone number' do
+    let(:params) { valid_params.deep_merge( { user: { sms_number: '1231234' } } ) }
+    it 'returns an invalid phone number error' do
+      expect(subject.errors.full_messages).to include('Phone number must be in the format 1231231234 or (123)123-1234 or 1 (123) 123-1234')
     end
   end
 
-  context 'invalid zip code that is not numeric' do
+  context 'with invalid zip code' do
 
-    let(:settings) { {"zip_code": "123ab"} }
+    context 'too short' do
+      let(:params) { valid_params.deep_merge( { user: { settings: { "zip_code": "123" } } } ) }
+      it 'returns an invalid zip code error' do
+        expect(subject.errors.full_messages).to include('Zip code must be 5 digits')
+      end
+    end
 
-    it 'raises an InvalidZipCodeError' do
-      expect{subject}.to raise_error(UserRegistrationInteractor::InvalidZipCodeError)
+    context 'too long' do
+      let(:params) { valid_params.deep_merge( { user: { settings: { "zip_code": "123456789" } } } ) }
+      it 'returns an invalid zip code error' do
+        expect(subject.errors.full_messages).to include('Zip code must be 5 digits')
+      end
+    end
+
+    context 'not numeric' do
+      let(:params) { valid_params.deep_merge( { user: { settings: { "zip_code": "123ab" } } } ) }
+      it 'returns an invalid zip code error' do
+        expect(subject.errors.full_messages).to include('Zip code must be 5 digits')
+      end
     end
   end
 
-  context 'invalid zip code that is not a string' do
-
-    let(:settings) { {"zip_code": 12345} }
-
-    it 'raises an InvalidInteractionError' do
-      expect{subject}.to raise_error(ActiveInteraction::InvalidInteractionError)
-    end
-  end
-
-  context 'running the user registration service' do
-    let(:settings) { {"zip_code": "12345"} }
+  context 'valid params' do
+    let(:params) { valid_params }
     it 'runs the user registration service' do
-      allow_any_instance_of(UserRegistrationService).to receive(:execute)
-      expect_any_instance_of(UserRegistrationService).to receive(:execute)
+      allow_any_instance_of(UserRegistrationService).to receive(:run)
+      expect_any_instance_of(UserRegistrationService).to receive(:run)
       subject
     end
   end

@@ -5,6 +5,8 @@ class HomePagesController < ApplicationController
     MinuteWorker.perform_async('some_arg')
   end
 
+  # TODO: extract logger logic into a Logger module
+
   def log_current_method(method)
     log_delimiter
     logger.tagged("#{Time.zone.now} -- #{self.class.to_s}") do

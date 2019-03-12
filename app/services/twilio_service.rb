@@ -1,11 +1,14 @@
 require 'twilio-ruby'
 
+Message = Struct.new(:from, :to, :body)
+
 class TwilioService
 
-  def initialize
+  def initialize()
     @sms_client = Twilio::REST::Client.new(
       ENV.fetch("TWILIO_ACCOUNT_SID"),
       ENV.fetch("TWILIO_AUTH_TOKEN"),
+      opts = nil
     )
   end
 

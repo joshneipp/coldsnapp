@@ -5,12 +5,14 @@ class UserRegistrationService
     @user = user
   end
 
-  def execute
+  def run
     if @user.save
       send_sms_verification
       Rails.logger.debug "#{Time.zone.now}" " -- " "New user registered"
     else
+      # TODO handle error for interactor
       raise UserRegistrationError
+      # return 
     end
   end
 

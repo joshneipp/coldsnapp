@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe UserRegistrationService do
   describe '.create_user' do
-    subject { UserRegistrationService.new(new_user).execute }
+    subject { UserRegistrationService.new(new_user).run }
     let(:new_user) { User.new(user_params) }
 
     context 'valid params' do
