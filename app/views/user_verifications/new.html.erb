@@ -1,2 +1,29 @@
 <h1>UserVerifications#new</h1>
 <p>Find me in app/views/user_verifications/new.html.erb</p>
+
+
+
+
+
+<div class="container">
+<%= image_tag("snowflake3.png", size: "60x60", id: 'snowflake', alt: 'coldsnapp weather tracker logo') %>
+<div>
+  <span class="roboto font-24">coldsn</span><span class="roboto bold font-24">app</span>
+  <%# <span class="roboto font-24">  verify your phone number</span> %>
+</div>
+<div>
+  <span class="roboto font-24">thank you for signing up!</span>
+</div>
+<div>
+  <span class="roboto font-24">please verify your phone number</span>
+</div>
+  <%= form_with url: user_verifications_path, local: true do |form| %>
+  <div class="form roboto">
+    <%= form.text_field :verification_code %>
+    <%= form.label :verification_code %>
+  </div>
+  <div class="form">
+    <%= form.submit('Verify', class: 'btn') %>
+  </div>
+  <% end %>
+</div>

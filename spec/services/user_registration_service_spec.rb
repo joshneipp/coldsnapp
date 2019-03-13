@@ -1,23 +1,24 @@
 require 'rails_helper'
 
 describe UserRegistrationService do
-  describe '.create_user' do
+  describe '.run' do
     subject { UserRegistrationService.new(new_user).run }
     let(:new_user) { User.new(user_params) }
-
-    context 'valid params' do
-      let(:user_params) do
-        {
-          username: 'myusername',
-          password: 'mypassword',
-          sms_number: ENV.fetch('TWILIO_TEST_SMS_TO'),
-          sms_verification_sent_at: nil,
-          sms_verification_code: nil,
-          settings: {
-            "zip_code": "12345"
-          }
+    let(:existing_user) { User.create!(username: Faker::Internet.username, password: Faker::Internet.password) }
+    let(:user_params) do
+      {
+        username: Faker::Internet.username,
+        password: Faker::Internet.password,
+        sms_number: ENV.fetch('TWILIO_TEST_SMS_TO'),
+        sms_verification_sent_at: nil,
+        sms_verification_code: nil,
+        settings: {
+          "zip_code": "12345"
         }
-      end
+      }
+    end
+
+    context 'with valid params' do
 
       it 'creates a new user' do
         stub_twilio_request
@@ -50,6 +51,27 @@ describe UserRegistrationService do
         stub_twilio_request
         expect_any_instance_of(TwilioService).to receive(:send_message)
         subject
+      end
+    end
+
+    context 'when the username already exists' do
+      let(:user_params) do
+        {
+          username: existing_user.username,
+          password: existing_user.password,
+          sms_number: ENV.fetch('TWILIO_TEST_SMS_TO'),
+          sms_verification_sent_at: nil,
+          sms_verification_code: nil,
+          settings: {
+            "zip_code": "12345"
+          }
+        }
+      end
+
+      it 'returns an error' do
+        expect do
+          subject
+        end.to raise_error('Username has already been taken')
       end
     end
   end

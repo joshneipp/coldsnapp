@@ -30,9 +30,10 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
-
   username_required: 'Username is required'
   password_required: 'Password is required'
   valid_phone_number_required: 'Phone number must be in the format 1231231234 or (123)123-1234 or 1 (123) 123-1234'
+  user_registration_error: 'Unable to register user'
   valid_zip_code_required: 'Zip code must be 5 digits'
+  invalid_verification_code: 'Verification code does not match'
+  user_not_found: 'User not found'

@@ -11,7 +11,11 @@ class UserRegistrationsController < ApplicationController
   def create
     response = UserRegistrationInteractor.run(params)
     if response.valid?
-      render json: { status: 200 }
+      # TODO: make unique!
+      user = User.find_by(username: params[:user][:username])
+      log_in(user) if user
+      redirect_to controller: 'user_verifications', action: 'new'
+      # render json: { status: 200 }
     else
       render json: { error: response.errors.full_messages }, status: 400
     end

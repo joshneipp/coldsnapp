@@ -3,7 +3,7 @@ FactoryBot.define do
     username { Faker::Internet.username }
     password { Faker::Internet.password }
     sms_number { Faker::PhoneNumber.cell_phone }
-    sms_verification_code { Faker::Number.number(6) }
+    sms_verification_code { nil }
     sms_verification_sent_at { nil }
     
     factory :unverified_user do

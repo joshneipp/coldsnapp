@@ -6,8 +6,8 @@ describe UserRegistrationInteractor do
   let(:valid_params) do
     {
       user: {
-        username: 'myusername',
-        password: 'valid_password',
+        username: Faker::Internet.username,
+        password: Faker::Internet.password,
         sms_number: '1231231234',
         settings: {
           "zip_code": "12345"
@@ -27,6 +27,16 @@ describe UserRegistrationInteractor do
     let(:params) { valid_params.deep_merge( { user: { username: ''} } ) }
     it 'returns an invalid username error' do
       expect(subject.errors.full_messages).to include('Username is required')
+    end
+  end
+
+  context 'when the username already exists' do
+    before do
+      User.create!(username: valid_params[:user][:username], password: valid_params[:user][:password])
+    end
+    let(:params) { valid_params }
+    it 'returns an error about a username that already exists' do
+      expect(subject.errors.full_messages).to include('Username has already been taken')
     end
   end
 

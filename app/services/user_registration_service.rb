@@ -9,10 +9,9 @@ class UserRegistrationService
     if @user.save
       send_sms_verification
       Rails.logger.debug "#{Time.zone.now}" " -- " "New user registered"
+      @user
     else
-      # TODO handle error for interactor
-      raise UserRegistrationError
-      # return 
+      raise UserRegistrationError.new(@user.errors.full_messages.first)
     end
   end
 

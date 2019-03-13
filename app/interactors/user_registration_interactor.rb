@@ -24,8 +24,8 @@ class UserRegistrationInteractor < ActiveInteraction::Base
       settings = user[:settings]
       user = User.new(username: username, password: password, sms_number: sms_number, settings: settings)
       response = UserRegistrationService.new(user).run
-    rescue UserRegistrationService::UserRegistrationError
-      errors.add(:base, 'Unable to register user')
+    rescue UserRegistrationService::UserRegistrationError => error
+      errors.add(:base, error.message)
     end
   end
 end

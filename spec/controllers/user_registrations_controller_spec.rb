@@ -82,7 +82,7 @@ describe UserRegistrationsController do
       it 'is successful' do
         stub_twilio_request
         subject
-        expect(response.status).to eq(200)
+        expect(response.status).to eq(302)
       end
 
       it 'creates a new user' do
@@ -94,6 +94,17 @@ describe UserRegistrationsController do
         stub_twilio_request
         expect_any_instance_of(TwilioService).to receive(:send_message)
         subject
+      end
+
+      it 'sets a valid session' do
+        stub_twilio_request
+        subject
+        expect(session[:user_id]).to eq(User.last.id)
+      end
+
+      it 'redirects to the user verification path' do
+        stub_twilio_request
+        expect(subject).to redirect_to(new_user_verification_url)
       end
     end
   end
