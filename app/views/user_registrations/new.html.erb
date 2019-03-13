@@ -1,3 +1,6 @@
+<% if flash[:notice] %>
+  <div class="notice"><%= flash[:notice] %></div>
+<% end %>
 
 <div class="container">
 <%= image_tag("snowflake3.png", size: "60x60", id: 'snowflake', alt: 'coldsnapp weather tracker logo') %>

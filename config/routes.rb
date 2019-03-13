@@ -11,5 +11,6 @@ Rails.application.routes.draw do
 
   resources :user_registrations, only: [:new, :create]
   resources :user_verifications, only: [:new, :create]
-  get 'register', to: 'user_registrations#new'
+  get 'signup', to: 'user_registrations#new'
+  get 'verify', to: 'user_verifications#new'
 end
