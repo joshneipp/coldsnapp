@@ -22,57 +22,50 @@ describe UserRegistrationsController do
 
       context 'with missing password' do
         let(:params) { valid_user_params.deep_merge( { user: { password: '' } } ) }
-        it 'is unsuccessful' do
-          subject
-          expect(response.status).to eq(400)
+        it 'is redirects back to signup page' do
+          expect(subject).to redirect_to('/signup')
         end
 
         it 'is returns an invalid password error' do
           subject
-          json_response = JSON.parse(response.body)
-          expect(json_response['error']).to include("Password is required")
+          expect(flash[:notice]).to eq('Password is required')
         end
       end
   
       context 'with missing username' do
         let(:params) { valid_user_params.deep_merge( { user: { username: '' } } ) }
-        it 'is unsuccessful' do
-          subject
-          expect(response.status).to eq(400)
+        it 'is redirects back to signup page' do
+          expect(subject).to redirect_to('/signup')
         end
 
         it 'is returns an invalid username error' do
           subject
-          json_response = JSON.parse(response.body)
-          expect(json_response['error']).to include("Username is required")
+          expect(flash[:notice]).to eq('Username is required')
         end
       end
 
       context 'with invalid phone number' do
         let(:params) { valid_user_params.deep_merge( { user: { sms_number: 'wrong' } } ) }
-        it 'is unsuccessful' do
-          subject
-          expect(response.status).to eq(400)
+        it 'is redirects back to signup page' do
+          expect(subject).to redirect_to('/signup')
         end
 
         it 'is returns an invalid phone number error' do
           subject
-          json_response = JSON.parse(response.body)
-          expect(json_response['error']).to include("Phone number must be in the format 1231231234 or (123)123-1234 or 1 (123) 123-1234")
+          expect(flash[:notice]).to eq('Phone number must be in the format 1231231234 or (123)123-1234 or 1 (123) 123-1234')
         end
       end
 
       context 'with invalid zip code' do
         let(:params) { valid_user_params.deep_merge( { user: { settings: { zip_code: 'wrong' } } } ) }
-        it 'is unsuccessful' do
-          subject
-          expect(response.status).to eq(400)
+
+        it 'is redirects back to signup page' do
+          expect(subject).to redirect_to('/signup')
         end
 
-        it 'is returns an invalid zip code error' do
+        it 'returns an invalid zip code message' do
           subject
-          json_response = JSON.parse(response.body)
-          expect(json_response['error']).to include("Zip code must be 5 digits")
+          expect(flash[:notice]).to eq('Zip code must be 5 digits')
         end
       end
     end
@@ -104,7 +97,7 @@ describe UserRegistrationsController do
 
       it 'redirects to the user verification path' do
         stub_twilio_request
-        expect(subject).to redirect_to(new_user_verification_url)
+        expect(subject).to redirect_to('/verify')
       end
     end
   end
