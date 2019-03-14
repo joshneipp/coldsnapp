@@ -15,6 +15,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'active_interaction', '~> 3.7'
 gem 'open-weather', '~> 0.12.0'
 gem 'twilio-ruby', '~> 5.20.1'
+gem 'sendgrid-ruby', '~> 5.3.0'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'sidekiq', '~> 5.2.5'
 gem 'sidekiq-scheduler', '~> 3.0.0'

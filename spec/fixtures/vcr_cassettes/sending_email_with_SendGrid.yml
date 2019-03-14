@@ -1,0 +1,54 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.sendgrid.com/v3/mail/send
+    body:
+      encoding: UTF-8
+      string: '{"from":{"email":"joshneipp@gmail.com"},"subject":"Test subject from
+        sendgrid","personalizations":[{"to":[{"email":"joshneipp@gmail.com"}]}],"content":[{"type":"text/plain","value":"This
+        is a test SendGrid email from Coldsnapp"}]}'
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - application/json
+      User-Agent:
+      - sendgrid/5.3.0;ruby
+      Authorization:
+      - Bearer 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
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 202
+      message: Accepted
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Thu, 14 Mar 2019 02:07:12 GMT
+      Content-Type:
+      - text/plain; charset=utf-8
+      Content-Length:
+      - '0'
+      Connection:
+      - keep-alive
+      X-Message-Id:
+      - 5qLr8AnbQsCfXlcD8MyPoQ
+      Access-Control-Allow-Origin:
+      - https://sendgrid.api-docs.io
+      Access-Control-Allow-Methods:
+      - POST
+      Access-Control-Allow-Headers:
+      - Authorization, Content-Type, On-behalf-of, x-sg-elas-acl
+      Access-Control-Max-Age:
+      - '600'
+      X-No-Cors-Reason:
+      - https://sendgrid.com/docs/Classroom/Basics/API/cors.html
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Thu, 14 Mar 2019 02:07:12 GMT
+recorded_with: VCR 4.0.0

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>The page you were looking for doesn't exist (404)</title>
+  <title>Oops! (404)</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <style>
   .rails-default-error-page {
@@ -14,27 +14,27 @@
 
   .rails-default-error-page div.dialog {
     width: 95%;
-    max-width: 33em;
+    max-width: 50em;
     margin: 4em auto 0;
   }
 
+  .image-container img {
+    max-width: 100%;
+  }
+
   .rails-default-error-page div.dialog > div {
-    border: 1px solid #CCC;
-    border-right-color: #999;
-    border-left-color: #999;
-    border-bottom-color: #BBB;
-    border-top: #B00100 solid 4px;
-    border-top-left-radius: 9px;
-    border-top-right-radius: 9px;
+    border: 2px solid #bbb;
+    border-radius: 2px;
     background-color: white;
     padding: 7px 12% 0;
     box-shadow: 0 3px 8px rgba(50, 50, 50, 0.17);
   }
 
   .rails-default-error-page h1 {
-    font-size: 100%;
-    color: #730E15;
-    line-height: 1.5em;
+    font-size: 2em;
+    color: #444;
+    line-height: 2.5em;
+    line-height: 2.5em;
   }
 
   .rails-default-error-page div.dialog > p {
@@ -55,13 +55,14 @@
 </head>
 
 <body class="rails-default-error-page">
-  <!-- This file lives in public/404.html -->
+  <!-- This file lives in public/500.html -->
   <div class="dialog">
     <div>
-      <h1>The page you were looking for doesn't exist.</h1>
-      <p>You may have mistyped the address or the page may have moved.</p>
+      <h1>Oops, that page doesn't exist.</h1>
+      <div class="image-container">
+        <img src='./boom.png' />
+      </div>
     </div>
-    <p>If you are the application owner check the logs for more information.</p>
   </div>
 </body>
 </html>

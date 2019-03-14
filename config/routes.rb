@@ -2,8 +2,10 @@ require 'sidekiq/web'
 require 'sidekiq-scheduler/web'
 
 Rails.application.routes.draw do
-  get 'home_pages/index'
-  root to: 'home_pages#index'
+  root to: 'user_registrations#new'
+  match 'signup', to: 'user_registrations#new', via: :get
+  # get 'signup', to: 'user_registrations#new'
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   mount Sidekiq::Web => '/sidekiq'
 
