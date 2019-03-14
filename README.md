@@ -2,31 +2,21 @@
 
 ### Sign up for notifications by text / email when freezing temperatures are forecast in your area.
 
-### Don't let cold weather ruin your day.
+### Don't let cold weather ruin your day!
 
 ### Recommended for homeowners, farmers, gardeners, contractors, or literally anyone living in an area that experiences freezing temperatures.
 
-### No more broken pipes!
-
-### No more flooded crawl spaces and basements!
-
-### No more frost-damaged vegetables and flowers from unexpected frost.
-
-### Releasing to the public later this year. (Track alpha deployments here: https://coldsnapp.herokuapp.com/user_registrations/new)
+### Releasing to the public later this year. (Track alpha deployments here: https://coldsnapp.herokuapp.com/)
 
 ### Made possible by these APIs:
 
 - OpenWeatherMap
 - Twilio
-- SendGrid (integration coming soon)
+- SendGrid
 
 #### TODO
-- integrate SendGrid REST API for sending emails
-- implement a logger to capture all user-related events
+- better logging of all user-related events, external api calls, and system failures
 - end-to-end integration tests
-- deploy to Heroku
-- build out React.js frontend
-- upgrade to Ruby 2.6 and Rails edge
 - add terms of service
 - profit!
 
@@ -34,6 +24,5 @@
 - (Recommended: install Ruby 2.5.1)
 - Clone this repo
 - Run `bundle install && rails db:create && rails db:migrate && rails s`
-- Visit `0.0.0.0:3000/user_registrations_new` for new user signups
-- Optionally visit the latest dev deployment staged at https://coldsnapp.herokuapp.com/user_registrations/new
+- Visit `0.0.0.0:3000/` for new user signups
 - (Recommended: run tests with `bundle exec rspec spec --format documentation`)
