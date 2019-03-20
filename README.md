@@ -4,9 +4,10 @@
 
 ### Get alerts about unusual and noteworthy weather in your area
 
-### Configure which weather events you want to be notified about
-
-### Configure notifications by email or text message, and when notifications occur
+### Configure which weather events you want to be notified about, and how to receive notifications
+* Notify by text or email
+* Get notified up to 10 days out
+* Choose from types of weather events (such as subfreezing temps, multiple rain days, snow/ice, heat wave, hurricane)
 
 ### Made possible by these APIs:
 
