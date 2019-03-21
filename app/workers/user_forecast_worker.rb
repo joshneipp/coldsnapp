@@ -4,6 +4,8 @@ class UserForecastWorker
   class << self
     # TODO: refactor this method, for length and clarity
     def perform_async
+      Rails.logger.debug "#{Time.zone.now} -- #{self.class.to_s}"
+
       users_for_forecast = User.where('next_forecast_check_time <= ?', Time.now)
       users_for_forecast.each do |user|
         if user.settings['notify_of_frost']
