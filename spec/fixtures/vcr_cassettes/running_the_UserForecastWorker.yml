@@ -1,0 +1,53 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://api.openweathermap.org/data/2.5/forecast/daily?appid=<WEATHERAPIKEY>&units=imperial&zip=12345
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - api.openweathermap.org
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - openresty
+      Date:
+      - Thu, 21 Mar 2019 00:39:46 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '1978'
+      Connection:
+      - keep-alive
+      X-Cache-Key:
+      - "/data/2.5/forecast/daily?units=imperial&zip=12345"
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Methods:
+      - GET, POST
+    body:
+      encoding: UTF-8
+      string: '{"city":{"id":420026089,"name":"Schenectady","coord":{"lon":-73.9396,"lat":42.8142},"country":"US","population":0},"cod":"200","message":0.3109342,"cnt":7,"list":[{"dt":1553101200,"temp":{"day":41.07,"min":33.58,"max":41.07,"night":33.58,"eve":41.07,"morn":41.07},"pressure":1024.65,"humidity":43,"weather":[{"id":800,"main":"Clear","description":"sky
+        is clear","icon":"01n"}],"speed":6.42,"deg":188,"clouds":0},{"dt":1553187600,"temp":{"day":43.5,"min":34.11,"max":47.28,"night":36.39,"eve":44.28,"morn":34.11},"pressure":1017.72,"humidity":66,"weather":[{"id":600,"main":"Snow","description":"light
+        snow","icon":"13d"}],"speed":6.62,"deg":153,"clouds":80,"rain":3.84,"snow":0.05},{"dt":1553274000,"temp":{"day":37.06,"min":33.22,"max":37.06,"night":34.59,"eve":34.12,"morn":33.22},"pressure":985.6,"humidity":98,"weather":[{"id":602,"main":"Snow","description":"heavy
+        snow","icon":"13d"}],"speed":10.67,"deg":331,"clouds":92,"rain":13.04,"snow":23.27},{"dt":1553360400,"temp":{"day":26.24,"min":16.27,"max":26.24,"night":23.02,"eve":25.77,"morn":16.27},"pressure":1024.17,"humidity":0,"weather":[{"id":600,"main":"Snow","description":"light
+        snow","icon":"13d"}],"speed":11.05,"deg":319,"clouds":0,"snow":0.17},{"dt":1553446800,"temp":{"day":43.72,"min":22.51,"max":43.72,"night":25.14,"eve":39.61,"morn":22.51},"pressure":1031.33,"humidity":0,"weather":[{"id":800,"main":"Clear","description":"sky
+        is clear","icon":"01d"}],"speed":7.05,"deg":287,"clouds":0},{"dt":1553533200,"temp":{"day":54.57,"min":25.84,"max":54.57,"night":35.69,"eve":43.54,"morn":25.84},"pressure":1024.64,"humidity":0,"weather":[{"id":800,"main":"Clear","description":"sky
+        is clear","icon":"01d"}],"speed":6.08,"deg":259,"clouds":0},{"dt":1553619600,"temp":{"day":50.58,"min":41.59,"max":56.84,"night":55.53,"eve":56.84,"morn":41.59},"pressure":1004.1,"humidity":0,"weather":[{"id":502,"main":"Rain","description":"heavy
+        intensity rain","icon":"10d"}],"speed":10.02,"deg":182,"clouds":100,"rain":32.7}]}'
+    http_version: 
+  recorded_at: Thu, 21 Mar 2019 00:39:46 GMT
+recorded_with: VCR 4.0.0

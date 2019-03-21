@@ -7,8 +7,7 @@ class TwilioService
   def initialize()
     @sms_client = Twilio::REST::Client.new(
       ENV.fetch("TWILIO_ACCOUNT_SID"),
-      ENV.fetch("TWILIO_AUTH_TOKEN"),
-      opts = nil
+      ENV.fetch("TWILIO_AUTH_TOKEN")
     )
   end
 
