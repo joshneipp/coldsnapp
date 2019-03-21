@@ -7,7 +7,7 @@ class WeatherClientService
     units: 'imperial',
     appid: ENV["OPEN_WEATHER_API_KEY"]
   }
-  URL_STRING = 'http://api.openweathermap.org/data/2.5/forecast/daily'
+  URL_STRING = 'https://api.openweathermap.org/data/2.5/forecast/daily'
 
   def initialize(zip_code)
     @zip_code = zip_code
