@@ -1,7 +1,6 @@
 class UserVerificationsController < ApplicationController
   include UserRegistrationsHelper
   def new
-
   end
 
   def create

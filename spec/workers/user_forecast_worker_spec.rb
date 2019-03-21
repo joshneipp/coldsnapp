@@ -2,7 +2,7 @@ require 'sidekiq/testing'
 Sidekiq::Testing.inline!
 
 describe UserForecastWorker do
-  subject { UserForecastWorker.perform_async }
+  subject { UserForecastWorker.new.perform }
 
   context 'when user next_forecast_check_time is past due' do
     context 'when the user settings indicate the user wants to be notified of freezing weather and there is freezing weather in the forecast' do
