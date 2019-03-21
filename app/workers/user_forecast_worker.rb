@@ -3,9 +3,12 @@ class UserForecastWorker
 
   # TODO: refactor this method, for length and clarity
   def perform
-    Rails.logger.debug "#{Time.zone.now} -- #{self.class.to_s}"
-
+    Rails.logger.info "#{Time.zone.now} -- Running #{self.class.to_s}"
     users_for_forecast = User.where('next_forecast_check_time <= ?', Time.now)
+
+    Rails.logger.info "#{self.class.to_s}... " "No users to forecast and update" if users_for_forecast.empty?
+    return if users_for_forecast.empty?
+
     users_for_forecast.each do |user|
       if user.settings['notify_of_frost']
         zip_code = user.settings['zip_code']
