@@ -21,6 +21,7 @@ class WeatherClientService
   def full_forecast
     uri = URI(URL_STRING)
     uri.query = URI.encode_www_form(forecast_args)
+    uri['X-Requested-With'] = 'XMLHttpRequest'
     response = Net::HTTP.get(uri)
 
     Rails.logger.info "###############"
