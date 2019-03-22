@@ -1,5 +1,6 @@
 require 'open_weather'
 require 'net/http'
+require 'openssl'
 require 'json'
 
 class WeatherClientService
@@ -7,6 +8,7 @@ class WeatherClientService
     units: 'imperial',
     appid: ENV["OPEN_WEATHER_API_KEY"]
   }
+
   URL_STRING = 'https://cors-anywhere.herokuapp.com/http://api.openweathermap.org/data/2.5/forecast/daily'
 
   def initialize(zip_code)
@@ -21,26 +23,20 @@ class WeatherClientService
   def full_forecast
     uri = URI(URL_STRING)
     uri.query = URI.encode_www_form(forecast_args)
+    http = Net::HTTP.new(uri.host, uri.port)
+    http.use_ssl = true
+    http.verify_mode = OpenSSL::SSL::VERIFY_PEER
+    request = Net::HTTP::Get.new(uri.request_uri)
+    request['X-Requested-With'] = 'XMLHttpRequest'
 
-    req = Net::HTTP::Get.new(uri)
-    req['X-Requested-With'] = 'XMLHttpRequest'
-
-    Rails.logger.info "###############"
-    Rails.logger.info "Request"
-    Rails.logger.info "#{req.inspect}"
-    Rails.logger.info "###############"
-
-
-    res = Net::HTTP.start(uri.hostname, uri.port) {|http|
-      http.request(req)
-    }
+    response = http.request(request)
 
     Rails.logger.info "###############"
+    Rails.logger.info "WeatherClientResponse..."
+    Rails.logger.info "#{response.body.inspect}"
     Rails.logger.info "###############"
-    Rails.logger.info "#{res.inspect}"
-    Rails.logger.info "###############"
-    Rails.logger.info "###############"
-    return res
+
+    return response
   end
 
   def json_forecast
