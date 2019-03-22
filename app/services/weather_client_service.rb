@@ -25,6 +25,12 @@ class WeatherClientService
     req = Net::HTTP::Get.new(uri)
     req['X-Requested-With'] = 'XMLHttpRequest'
 
+    Rails.logger.info "###############"
+    Rails.logger.info "Request"
+    Rails.logger.info "#{req.inspect}"
+    Rails.logger.info "###############"
+
+
     res = Net::HTTP.start(uri.hostname, uri.port) {|http|
       http.request(req)
     }
