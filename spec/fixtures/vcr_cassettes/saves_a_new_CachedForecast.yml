@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: http://api.openweathermap.org/data/2.5/forecast/daily?appid=<WEATHERAPIKEY>&units=imperial&zip=12345
+    uri: https://cors-anywhere.herokuapp.com/http://api.openweathermap.org/data/2.5/forecast/?appid=<WEATHERAPIKEY>&units=imperial&zip=12345
     body:
       encoding: US-ASCII
       string: ''
@@ -13,41 +13,120 @@ http_interactions:
       - "*/*"
       User-Agent:
       - Ruby
-      Host:
-      - api.openweathermap.org
+      X-Requested-With:
+      - XMLHttpRequest
   response:
     status:
       code: 200
       message: OK
     headers:
+      Connection:
+      - keep-alive
+      X-Request-Url:
+      - http://api.openweathermap.org/data/2.5/forecast/?units=imperial&appid=<WEATHERAPIKEY>&zip=12345
       Server:
       - openresty
       Date:
-      - Wed, 06 Mar 2019 01:04:38 GMT
+      - Sat, 23 Mar 2019 01:01:42 GMT
       Content-Type:
       - application/json; charset=utf-8
       Content-Length:
-      - '1941'
-      Connection:
-      - keep-alive
+      - '14362'
       X-Cache-Key:
-      - "/data/2.5/forecast/daily?units=imperial&zip=12345"
+      - "/data/2.5/forecast/?units=imperial&zip=12345"
       Access-Control-Allow-Origin:
       - "*"
       Access-Control-Allow-Credentials:
       - 'true'
       Access-Control-Allow-Methods:
       - GET, POST
+      X-Final-Url:
+      - http://api.openweathermap.org/data/2.5/forecast/?units=imperial&appid=<WEATHERAPIKEY>&zip=12345
+      Access-Control-Expose-Headers:
+      - server,date,content-type,content-length,connection,x-cache-key,access-control-allow-origin,access-control-allow-credentials,access-control-allow-methods,x-final-url
+      Via:
+      - 1.1 vegur
     body:
       encoding: UTF-8
-      string: '{"city":{"id":420026089,"name":"Schenectady","coord":{"lon":-73.9396,"lat":42.8142},"country":"US","population":0},"cod":"200","message":9.8654346,"cnt":7,"list":[{"dt":1551805200,"temp":{"day":20.01,"min":12.83,"max":20.01,"night":12.83,"eve":20.01,"morn":20.01},"pressure":1013.21,"humidity":54,"weather":[{"id":600,"main":"Snow","description":"light
-        snow","icon":"13d"}],"speed":3.83,"deg":316,"clouds":80,"snow":0.5},{"dt":1551891600,"temp":{"day":18.97,"min":8.76,"max":18.97,"night":9.5,"eve":15.19,"morn":8.76},"pressure":1019.02,"humidity":31,"weather":[{"id":600,"main":"Snow","description":"light
-        snow","icon":"13d"}],"speed":8.46,"deg":299,"clouds":36,"snow":0.22},{"dt":1551978000,"temp":{"day":21.97,"min":6.12,"max":21.97,"night":6.44,"eve":18.18,"morn":6.12},"pressure":1024.9,"humidity":40,"weather":[{"id":600,"main":"Snow","description":"light
-        snow","icon":"13d"}],"speed":5.95,"deg":282,"clouds":36,"snow":0.1},{"dt":1552064400,"temp":{"day":28.89,"min":9.39,"max":28.89,"night":9.39,"eve":21.36,"morn":14.81},"pressure":1027.42,"humidity":0,"weather":[{"id":800,"main":"Clear","description":"sky
-        is clear","icon":"01d"}],"speed":3.71,"deg":228,"clouds":0},{"dt":1552150800,"temp":{"day":37.27,"min":7.18,"max":37.27,"night":14.14,"eve":24.78,"morn":7.18},"pressure":1029.86,"humidity":0,"weather":[{"id":800,"main":"Clear","description":"sky
-        is clear","icon":"01d"}],"speed":3.4,"deg":216,"clouds":0},{"dt":1552237200,"temp":{"day":37,"min":10.22,"max":37,"night":34.57,"eve":36.55,"morn":10.22},"pressure":1029.49,"humidity":0,"weather":[{"id":600,"main":"Snow","description":"light
-        snow","icon":"13d"}],"speed":6.93,"deg":154,"clouds":78,"rain":1.34,"snow":0.05},{"dt":1552323600,"temp":{"day":45.7,"min":31.51,"max":45.7,"night":35.62,"eve":43.7,"morn":31.51},"pressure":1017.96,"humidity":0,"weather":[{"id":500,"main":"Rain","description":"light
-        rain","icon":"10d"}],"speed":2.59,"deg":184,"clouds":88,"rain":0.58}]}'
+      string: '{"cod":"200","message":0.0103,"cnt":39,"list":[{"dt":1553310000,"main":{"temp":33.53,"temp_min":33.26,"temp_max":33.53,"pressure":997.2,"sea_level":997.2,"grnd_level":971.79,"humidity":85,"temp_kf":0.16},"weather":[{"id":600,"main":"Snow","description":"light
+        snow","icon":"13n"}],"clouds":{"all":88},"wind":{"speed":12.01,"deg":300.004},"rain":{"3h":0.455},"snow":{"3h":0.543},"sys":{"pod":"n"},"dt_txt":"2019-03-23
+        03:00:00"},{"dt":1553320800,"main":{"temp":32.25,"temp_min":32.04,"temp_max":32.25,"pressure":999.29,"sea_level":999.29,"grnd_level":973.76,"humidity":69,"temp_kf":0.12},"weather":[{"id":600,"main":"Snow","description":"light
+        snow","icon":"13n"}],"clouds":{"all":92},"wind":{"speed":12.91,"deg":301.001},"rain":{},"snow":{"3h":0.961},"sys":{"pod":"n"},"dt_txt":"2019-03-23
+        06:00:00"},{"dt":1553331600,"main":{"temp":31.05,"temp_min":30.91,"temp_max":31.05,"pressure":1002.3,"sea_level":1002.3,"grnd_level":976.69,"humidity":67,"temp_kf":0.08},"weather":[{"id":600,"main":"Snow","description":"light
+        snow","icon":"13n"}],"clouds":{"all":80},"wind":{"speed":13.35,"deg":304.501},"rain":{},"snow":{"3h":0.547},"sys":{"pod":"n"},"dt_txt":"2019-03-23
+        09:00:00"},{"dt":1553342400,"main":{"temp":30.43,"temp_min":30.36,"temp_max":30.43,"pressure":1006.39,"sea_level":1006.39,"grnd_level":980.73,"humidity":60,"temp_kf":0.04},"weather":[{"id":600,"main":"Snow","description":"light
+        snow","icon":"13d"}],"clouds":{"all":56},"wind":{"speed":12.46,"deg":307.002},"rain":{},"snow":{"3h":0.085500000000001},"sys":{"pod":"d"},"dt_txt":"2019-03-23
+        12:00:00"},{"dt":1553353200,"main":{"temp":32.21,"temp_min":32.21,"temp_max":32.21,"pressure":1009.73,"sea_level":1009.73,"grnd_level":984.23,"humidity":56,"temp_kf":0},"weather":[{"id":800,"main":"Clear","description":"clear
+        sky","icon":"01d"}],"clouds":{"all":68},"wind":{"speed":12.37,"deg":307.005},"rain":{},"snow":{"3h":0.0213},"sys":{"pod":"d"},"dt_txt":"2019-03-23
+        15:00:00"},{"dt":1553364000,"main":{"temp":37.21,"temp_min":37.21,"temp_max":37.21,"pressure":1011.7,"sea_level":1011.7,"grnd_level":986.27,"humidity":46,"temp_kf":0},"weather":[{"id":800,"main":"Clear","description":"clear
+        sky","icon":"01d"}],"clouds":{"all":0},"wind":{"speed":11.79,"deg":306.002},"rain":{},"snow":{},"sys":{"pod":"d"},"dt_txt":"2019-03-23
+        18:00:00"},{"dt":1553374800,"main":{"temp":37.41,"temp_min":37.41,"temp_max":37.41,"pressure":1013.57,"sea_level":1013.57,"grnd_level":988.2,"humidity":40,"temp_kf":0},"weather":[{"id":800,"main":"Clear","description":"clear
+        sky","icon":"01d"}],"clouds":{"all":0},"wind":{"speed":11.56,"deg":307.502},"rain":{},"snow":{},"sys":{"pod":"d"},"dt_txt":"2019-03-23
+        21:00:00"},{"dt":1553385600,"main":{"temp":31.67,"temp_min":31.67,"temp_max":31.67,"pressure":1017.2,"sea_level":1017.2,"grnd_level":991.42,"humidity":42,"temp_kf":0},"weather":[{"id":800,"main":"Clear","description":"clear
+        sky","icon":"01n"}],"clouds":{"all":0},"wind":{"speed":10.09,"deg":305.505},"rain":{},"snow":{},"sys":{"pod":"n"},"dt_txt":"2019-03-24
+        00:00:00"},{"dt":1553396400,"main":{"temp":29.4,"temp_min":29.4,"temp_max":29.4,"pressure":1019.56,"sea_level":1019.56,"grnd_level":993.64,"humidity":49,"temp_kf":0},"weather":[{"id":800,"main":"Clear","description":"clear
+        sky","icon":"01n"}],"clouds":{"all":0},"wind":{"speed":8.79,"deg":304.51},"rain":{},"snow":{},"sys":{"pod":"n"},"dt_txt":"2019-03-24
+        03:00:00"},{"dt":1553407200,"main":{"temp":29.56,"temp_min":29.56,"temp_max":29.56,"pressure":1020.22,"sea_level":1020.22,"grnd_level":994.15,"humidity":49,"temp_kf":0},"weather":[{"id":800,"main":"Clear","description":"clear
+        sky","icon":"01n"}],"clouds":{"all":0},"wind":{"speed":7.83,"deg":303.002},"rain":{},"snow":{},"sys":{"pod":"n"},"dt_txt":"2019-03-24
+        06:00:00"},{"dt":1553418000,"main":{"temp":28.75,"temp_min":28.75,"temp_max":28.75,"pressure":1021.17,"sea_level":1021.17,"grnd_level":994.99,"humidity":60,"temp_kf":0},"weather":[{"id":800,"main":"Clear","description":"clear
+        sky","icon":"01n"}],"clouds":{"all":0},"wind":{"speed":6.98,"deg":300.5},"rain":{},"snow":{},"sys":{"pod":"n"},"dt_txt":"2019-03-24
+        09:00:00"},{"dt":1553428800,"main":{"temp":30.37,"temp_min":30.37,"temp_max":30.37,"pressure":1022.35,"sea_level":1022.35,"grnd_level":996.09,"humidity":59,"temp_kf":0},"weather":[{"id":800,"main":"Clear","description":"clear
+        sky","icon":"01d"}],"clouds":{"all":0},"wind":{"speed":6.42,"deg":296.503},"rain":{},"snow":{},"sys":{"pod":"d"},"dt_txt":"2019-03-24
+        12:00:00"},{"dt":1553439600,"main":{"temp":42.54,"temp_min":42.54,"temp_max":42.54,"pressure":1020.89,"sea_level":1020.89,"grnd_level":995.26,"humidity":48,"temp_kf":0},"weather":[{"id":801,"main":"Clouds","description":"few
+        clouds","icon":"02d"}],"clouds":{"all":20},"wind":{"speed":5.28,"deg":290.501},"rain":{},"snow":{},"sys":{"pod":"d"},"dt_txt":"2019-03-24
+        15:00:00"},{"dt":1553450400,"main":{"temp":49.46,"temp_min":49.46,"temp_max":49.46,"pressure":1018.82,"sea_level":1018.82,"grnd_level":993.46,"humidity":44,"temp_kf":0},"weather":[{"id":802,"main":"Clouds","description":"scattered
+        clouds","icon":"03d"}],"clouds":{"all":36},"wind":{"speed":5.99,"deg":267.5},"rain":{},"snow":{},"sys":{"pod":"d"},"dt_txt":"2019-03-24
+        18:00:00"},{"dt":1553461200,"main":{"temp":47.64,"temp_min":47.64,"temp_max":47.64,"pressure":1017.43,"sea_level":1017.43,"grnd_level":992.22,"humidity":47,"temp_kf":0},"weather":[{"id":803,"main":"Clouds","description":"broken
+        clouds","icon":"04d"}],"clouds":{"all":68},"wind":{"speed":5.59,"deg":268.001},"rain":{},"snow":{},"sys":{"pod":"d"},"dt_txt":"2019-03-24
+        21:00:00"},{"dt":1553472000,"main":{"temp":40.62,"temp_min":40.62,"temp_max":40.62,"pressure":1018.44,"sea_level":1018.44,"grnd_level":992.99,"humidity":54,"temp_kf":0},"weather":[{"id":802,"main":"Clouds","description":"scattered
+        clouds","icon":"03n"}],"clouds":{"all":36},"wind":{"speed":4.5,"deg":272.5},"rain":{},"snow":{},"sys":{"pod":"n"},"dt_txt":"2019-03-25
+        00:00:00"},{"dt":1553482800,"main":{"temp":34.45,"temp_min":34.45,"temp_max":34.45,"pressure":1018.85,"sea_level":1018.85,"grnd_level":993.14,"humidity":68,"temp_kf":0},"weather":[{"id":801,"main":"Clouds","description":"few
+        clouds","icon":"02n"}],"clouds":{"all":20},"wind":{"speed":3.18,"deg":258.502},"rain":{},"snow":{},"sys":{"pod":"n"},"dt_txt":"2019-03-25
+        03:00:00"},{"dt":1553493600,"main":{"temp":28.09,"temp_min":28.09,"temp_max":28.09,"pressure":1017.95,"sea_level":1017.95,"grnd_level":992.12,"humidity":79,"temp_kf":0},"weather":[{"id":801,"main":"Clouds","description":"few
+        clouds","icon":"02n"}],"clouds":{"all":12},"wind":{"speed":3.38,"deg":249.501},"rain":{},"snow":{},"sys":{"pod":"n"},"dt_txt":"2019-03-25
+        06:00:00"},{"dt":1553504400,"main":{"temp":28.35,"temp_min":28.35,"temp_max":28.35,"pressure":1016.98,"sea_level":1016.98,"grnd_level":991.03,"humidity":78,"temp_kf":0},"weather":[{"id":803,"main":"Clouds","description":"broken
+        clouds","icon":"04n"}],"clouds":{"all":76},"wind":{"speed":3.74,"deg":249.5},"rain":{},"snow":{},"sys":{"pod":"n"},"dt_txt":"2019-03-25
+        09:00:00"},{"dt":1553515200,"main":{"temp":32.98,"temp_min":32.98,"temp_max":32.98,"pressure":1016.74,"sea_level":1016.74,"grnd_level":990.75,"humidity":87,"temp_kf":0},"weather":[{"id":500,"main":"Rain","description":"light
+        rain","icon":"10d"}],"clouds":{"all":92},"wind":{"speed":2.73,"deg":231.001},"rain":{"3h":0.014999999999999},"snow":{},"sys":{"pod":"d"},"dt_txt":"2019-03-25
+        12:00:00"},{"dt":1553526000,"main":{"temp":38.94,"temp_min":38.94,"temp_max":38.94,"pressure":1016.69,"sea_level":1016.69,"grnd_level":990.86,"humidity":100,"temp_kf":0},"weather":[{"id":600,"main":"Snow","description":"light
+        snow","icon":"13d"}],"clouds":{"all":92},"wind":{"speed":3.38,"deg":266.001},"rain":{"3h":0.5},"snow":{"3h":0.0312},"sys":{"pod":"d"},"dt_txt":"2019-03-25
+        15:00:00"},{"dt":1553536800,"main":{"temp":37.03,"temp_min":37.03,"temp_max":37.03,"pressure":1017.68,"sea_level":1017.68,"grnd_level":991.93,"humidity":100,"temp_kf":0},"weather":[{"id":600,"main":"Snow","description":"light
+        snow","icon":"13d"}],"clouds":{"all":92},"wind":{"speed":5.95,"deg":329.502},"rain":{"3h":1},"snow":{"3h":0.055},"sys":{"pod":"d"},"dt_txt":"2019-03-25
+        18:00:00"},{"dt":1553547600,"main":{"temp":39.4,"temp_min":39.4,"temp_max":39.4,"pressure":1017.45,"sea_level":1017.45,"grnd_level":991.75,"humidity":62,"temp_kf":0},"weather":[{"id":500,"main":"Rain","description":"light
+        rain","icon":"10d"}],"clouds":{"all":36},"wind":{"speed":4.94,"deg":339},"rain":{"3h":0.025},"snow":{},"sys":{"pod":"d"},"dt_txt":"2019-03-25
+        21:00:00"},{"dt":1553558400,"main":{"temp":32.52,"temp_min":32.52,"temp_max":32.52,"pressure":1019.56,"sea_level":1019.56,"grnd_level":993.47,"humidity":54,"temp_kf":0},"weather":[{"id":801,"main":"Clouds","description":"few
+        clouds","icon":"02n"}],"clouds":{"all":24},"wind":{"speed":5.3,"deg":325.001},"rain":{},"snow":{},"sys":{"pod":"n"},"dt_txt":"2019-03-26
+        00:00:00"},{"dt":1553569200,"main":{"temp":26.93,"temp_min":26.93,"temp_max":26.93,"pressure":1021.99,"sea_level":1021.99,"grnd_level":995.68,"humidity":45,"temp_kf":0},"weather":[{"id":801,"main":"Clouds","description":"few
+        clouds","icon":"02n"}],"clouds":{"all":24},"wind":{"speed":5.61,"deg":331.501},"rain":{},"snow":{},"sys":{"pod":"n"},"dt_txt":"2019-03-26
+        03:00:00"},{"dt":1553580000,"main":{"temp":21.77,"temp_min":21.77,"temp_max":21.77,"pressure":1023.62,"sea_level":1023.62,"grnd_level":997.06,"humidity":48,"temp_kf":0},"weather":[{"id":800,"main":"Clear","description":"clear
+        sky","icon":"01n"}],"clouds":{"all":0},"wind":{"speed":5.19,"deg":335.002},"rain":{},"snow":{},"sys":{"pod":"n"},"dt_txt":"2019-03-26
+        06:00:00"},{"dt":1553590800,"main":{"temp":17.01,"temp_min":17.01,"temp_max":17.01,"pressure":1024.9,"sea_level":1024.9,"grnd_level":998.08,"humidity":54,"temp_kf":0},"weather":[{"id":800,"main":"Clear","description":"clear
+        sky","icon":"01n"}],"clouds":{"all":0},"wind":{"speed":3.36,"deg":317.006},"rain":{},"snow":{},"sys":{"pod":"n"},"dt_txt":"2019-03-26
+        09:00:00"},{"dt":1553601600,"main":{"temp":18.7,"temp_min":18.7,"temp_max":18.7,"pressure":1026.84,"sea_level":1026.84,"grnd_level":999.94,"humidity":50,"temp_kf":0},"weather":[{"id":800,"main":"Clear","description":"clear
+        sky","icon":"01d"}],"clouds":{"all":0},"wind":{"speed":3.94,"deg":317.502},"rain":{},"snow":{},"sys":{"pod":"d"},"dt_txt":"2019-03-26
+        12:00:00"},{"dt":1553612400,"main":{"temp":31.74,"temp_min":31.74,"temp_max":31.74,"pressure":1027.54,"sea_level":1027.54,"grnd_level":1001.15,"humidity":42,"temp_kf":0},"weather":[{"id":800,"main":"Clear","description":"clear
+        sky","icon":"01d"}],"clouds":{"all":0},"wind":{"speed":4.61,"deg":350.505},"rain":{},"snow":{},"sys":{"pod":"d"},"dt_txt":"2019-03-26
+        15:00:00"},{"dt":1553623200,"main":{"temp":35.97,"temp_min":35.97,"temp_max":35.97,"pressure":1026.97,"sea_level":1026.97,"grnd_level":1000.87,"humidity":36,"temp_kf":0},"weather":[{"id":800,"main":"Clear","description":"clear
+        sky","icon":"01d"}],"clouds":{"all":0},"wind":{"speed":5.5,"deg":333.5},"rain":{},"snow":{},"sys":{"pod":"d"},"dt_txt":"2019-03-26
+        18:00:00"},{"dt":1553634000,"main":{"temp":36.67,"temp_min":36.67,"temp_max":36.67,"pressure":1026.75,"sea_level":1026.75,"grnd_level":1000.73,"humidity":37,"temp_kf":0},"weather":[{"id":800,"main":"Clear","description":"clear
+        sky","icon":"01d"}],"clouds":{"all":0},"wind":{"speed":6.08,"deg":333.505},"rain":{},"snow":{},"sys":{"pod":"d"},"dt_txt":"2019-03-26
+        21:00:00"},{"dt":1553644800,"main":{"temp":29.45,"temp_min":29.45,"temp_max":29.45,"pressure":1028.95,"sea_level":1028.95,"grnd_level":1002.53,"humidity":44,"temp_kf":0},"weather":[{"id":800,"main":"Clear","description":"clear
+        sky","icon":"01n"}],"clouds":{"all":0},"wind":{"speed":5.39,"deg":330.502},"rain":{},"snow":{},"sys":{"pod":"n"},"dt_txt":"2019-03-27
+        00:00:00"},{"dt":1553655600,"main":{"temp":24.55,"temp_min":24.55,"temp_max":24.55,"pressure":1031.54,"sea_level":1031.54,"grnd_level":1004.88,"humidity":54,"temp_kf":0},"weather":[{"id":800,"main":"Clear","description":"clear
+        sky","icon":"01n"}],"clouds":{"all":0},"wind":{"speed":5.19,"deg":343.005},"rain":{},"snow":{},"sys":{"pod":"n"},"dt_txt":"2019-03-27
+        03:00:00"},{"dt":1553666400,"main":{"temp":19.46,"temp_min":19.46,"temp_max":19.46,"pressure":1033.04,"sea_level":1033.04,"grnd_level":1006.09,"humidity":58,"temp_kf":0},"weather":[{"id":800,"main":"Clear","description":"clear
+        sky","icon":"01n"}],"clouds":{"all":0},"wind":{"speed":3.62,"deg":351.501},"rain":{},"snow":{},"sys":{"pod":"n"},"dt_txt":"2019-03-27
+        06:00:00"},{"dt":1553677200,"main":{"temp":14.4,"temp_min":14.4,"temp_max":14.4,"pressure":1034.41,"sea_level":1034.41,"grnd_level":1007.34,"humidity":72,"temp_kf":0},"weather":[{"id":800,"main":"Clear","description":"clear
+        sky","icon":"01n"}],"clouds":{"all":0},"wind":{"speed":2.48,"deg":331.003},"rain":{},"snow":{},"sys":{"pod":"n"},"dt_txt":"2019-03-27
+        09:00:00"},{"dt":1553688000,"main":{"temp":17.12,"temp_min":17.12,"temp_max":17.12,"pressure":1036.49,"sea_level":1036.49,"grnd_level":1009.46,"humidity":64,"temp_kf":0},"weather":[{"id":800,"main":"Clear","description":"clear
+        sky","icon":"01d"}],"clouds":{"all":0},"wind":{"speed":2.37,"deg":312},"rain":{},"snow":{},"sys":{"pod":"d"},"dt_txt":"2019-03-27
+        12:00:00"},{"dt":1553698800,"main":{"temp":33.48,"temp_min":33.48,"temp_max":33.48,"pressure":1036.84,"sea_level":1036.84,"grnd_level":1010.52,"humidity":42,"temp_kf":0},"weather":[{"id":800,"main":"Clear","description":"clear
+        sky","icon":"01d"}],"clouds":{"all":0},"wind":{"speed":3.2,"deg":20.5027},"rain":{},"snow":{},"sys":{"pod":"d"},"dt_txt":"2019-03-27
+        15:00:00"},{"dt":1553709600,"main":{"temp":39.91,"temp_min":39.91,"temp_max":39.91,"pressure":1035.27,"sea_level":1035.27,"grnd_level":1009.26,"humidity":37,"temp_kf":0},"weather":[{"id":800,"main":"Clear","description":"clear
+        sky","icon":"01d"}],"clouds":{"all":0},"wind":{"speed":1.83,"deg":334.505},"rain":{},"snow":{},"sys":{"pod":"d"},"dt_txt":"2019-03-27
+        18:00:00"},{"dt":1553720400,"main":{"temp":42.43,"temp_min":42.43,"temp_max":42.43,"pressure":1033.84,"sea_level":1033.84,"grnd_level":1007.86,"humidity":35,"temp_kf":0},"weather":[{"id":800,"main":"Clear","description":"clear
+        sky","icon":"01d"}],"clouds":{"all":0},"wind":{"speed":2.84,"deg":224.5},"rain":{},"snow":{},"sys":{"pod":"d"},"dt_txt":"2019-03-27
+        21:00:00"}],"city":{"id":420026089,"name":"Schenectady","coord":{"lat":42.8142,"lon":-73.9396},"country":"US"}}'
     http_version: 
-  recorded_at: Wed, 06 Mar 2019 01:04:38 GMT
+  recorded_at: Sat, 23 Mar 2019 01:01:42 GMT
 recorded_with: VCR 4.0.0

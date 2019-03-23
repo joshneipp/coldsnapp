@@ -13,8 +13,7 @@ describe UserForecastWorker do
       end
 
       it 'checks for a cached forecast for the users zip code' do
-        # allow_any_instance_of(WeatherClientService).to receive(:seven_day_forecast_low_temperatures).and_return([31, 32, 31, 45, 34, 46, 56])
-        expect_any_instance_of(WeatherClientService).to receive(:seven_day_forecast_low_temperatures)
+        expect_any_instance_of(WeatherClientService).to receive(:low_temps)
         subject
       end
 

@@ -15,7 +15,7 @@ describe ForecastCacheService do
     context 'when a cached forecast exists and is more than one day old' do
 
       it 'runs the weather client service' do
-        expect_any_instance_of(WeatherClientService).to receive(:seven_day_forecast_low_temperatures)
+        expect_any_instance_of(WeatherClientService).to receive(:low_temps)
         subject
       end
 
@@ -33,7 +33,7 @@ describe ForecastCacheService do
 
       it 'runs the weather client service' do
         VCR.use_cassette 'runs the weather client service' do
-          expect_any_instance_of(WeatherClientService).to receive(:seven_day_forecast_low_temperatures)
+          expect_any_instance_of(WeatherClientService).to receive(:low_temps)
           subject
         end
       end

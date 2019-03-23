@@ -11,7 +11,6 @@ class WeatherClientService
 
   URL_STRING = 'https://cors-anywhere.herokuapp.com/http://api.openweathermap.org/data/2.5/forecast/'
 
-
   def initialize(zip_code)
     @zip_code = zip_code
     Rails.logger.debug "#{Time.zone.now} -- #{self.class.to_s}"
@@ -36,23 +35,18 @@ class WeatherClientService
     Rails.logger.info "WeatherClientResponse..."
     Rails.logger.info "#{response.body.inspect}"
     Rails.logger.info "###############"
-
-    return response
+    return response.body
   end
 
   def json_forecast
     JSON.parse(full_forecast)
   end
 
-  def seven_day_forecast
+  def five_day_forecast
     json_forecast['list']
   end
 
-  def seven_day_forecast_temperatures
-    seven_day_forecast.map{|day| day['temp']}
-  end
-
-  def seven_day_forecast_low_temperatures
-    seven_day_forecast_temperatures.map{|day| day['min']}
+  def low_temps
+    five_day_forecast.map{|day| day['main']['temp_min']}
   end
 end
