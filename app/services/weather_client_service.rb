@@ -9,7 +9,8 @@ class WeatherClientService
     appid: ENV["OPEN_WEATHER_API_KEY"]
   }
 
-  URL_STRING = 'https://cors-anywhere.herokuapp.com/http://api.openweathermap.org/data/2.5/forecast/daily'
+  URL_STRING = 'https://cors-anywhere.herokuapp.com/http://api.openweathermap.org/data/2.5/forecast/'
+
 
   def initialize(zip_code)
     @zip_code = zip_code
