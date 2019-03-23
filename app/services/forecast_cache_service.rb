@@ -5,6 +5,7 @@ class ForecastCacheService
   end
 
   def run
+    Rails.logger.info "Running forecast cache service"
     forecast = CachedForecast.find_by(zip_code: @zip_code)
     Rails.logger.info "Forecast: " "#{forecast.inspect}"
     
