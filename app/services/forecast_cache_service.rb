@@ -6,7 +6,10 @@ class ForecastCacheService
 
   def run
     forecast = CachedForecast.find_by(zip_code: @zip_code)
+    Rails.logger.info "Forecast: " "#{forecast.inspect}"
+    
     forecast = fetch_new_forecast if forecast.nil? || forecast.expired?
+    Rails.logger.info "Forecast: " "#{forecast.inspect}"
     forecast
   end
 
