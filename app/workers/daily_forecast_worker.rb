@@ -20,7 +20,11 @@ class DailyForecastWorker
       subject = 'Your daily coldsnapp forecast'
       to = ENV.fetch('SENDGRID_TEST_TO')
       content = forecast
-      SendgridService.new.run(from, subject, to, content)
+      res = SendgridService.new.run(from, subject, to, content)
+      res.status_code
+
+      Rails.logger.info "#{Time.zone.now} -- #{self.class.to_s} -- status_code #{res.status_code}...."
+
     end
   end
 
