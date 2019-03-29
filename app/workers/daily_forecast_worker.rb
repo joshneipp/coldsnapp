@@ -19,7 +19,7 @@ class DailyForecastWorker
       from = ENV.fetch('SENDGRID_TEST_FROM')
       subject = 'Your daily coldsnapp forecast'
       to = ENV.fetch('SENDGRID_TEST_TO')
-      content = forecast
+      content = forecast.to_s
       res = SendgridService.new.run(from, subject, to, content)
       res.status_code
 
