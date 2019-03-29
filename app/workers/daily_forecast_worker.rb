@@ -2,6 +2,8 @@ class DailyForecastWorker
   include Sidekiq::Worker
 
   def perform
+    Rails.logger.info "#{Time.zone.now} -- #{self.class.to_s}...."
+
 
     where("data ->> 'likelihood' = '0.89'")
 
