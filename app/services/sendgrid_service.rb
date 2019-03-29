@@ -16,7 +16,7 @@ class SendgridService
     Rails.logger.info "#{Time.zone.now} -- #{self.class.to_s} -- to #{to.inspect}...."
     Rails.logger.info "#{Time.zone.now} -- #{self.class.to_s} -- content #{content.inspect}...."
 
-    mail = Mail.new(from, subject, to, content)
+    mail = SendGrid::Mail.new(from, subject, to, content)
 
     Rails.logger.info "#{Time.zone.now} -- #{self.class.to_s} -- mail #{mail.to_json}...."
 
