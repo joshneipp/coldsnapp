@@ -24,6 +24,7 @@ class DailyForecastWorker
       res.status_code
 
       Rails.logger.info "#{Time.zone.now} -- #{self.class.to_s} -- status_code #{res.status_code}...."
+      Rails.logger.info "#{Time.zone.now} -- #{self.class.to_s} -- status_code #{res.inspect}...."
 
     end
   end
