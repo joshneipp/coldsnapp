@@ -4,10 +4,10 @@ class DailyForecastWorker
   def perform
     Rails.logger.info "#{Time.zone.now} -- #{self.class.to_s}...."
 
-
-    where("data ->> 'likelihood' = '0.89'")
-
     daily_forecast_users = User.where("settings ->> 'send_daily_forecast' = 'true'")
+
+    Rails.logger.info "#{Time.zone.now} -- #{self.class.to_s} -- daily_forecast_users #{daily_forecast_users}...."
+
     return if daily_forecast_users.empty?
     daily_forecast_users.each do |user|
       zip_code = user.settings['zip_code']
