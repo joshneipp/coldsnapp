@@ -12,6 +12,9 @@ class SendgridService
     to = Email.new(email: to)
     content = Content.new(type: 'text/plain', value: content)
     mail = Mail.new(from, subject, to, content)
+
+    Rails.logger.info "#{Time.zone.now} -- #{self.class.to_s} -- mail #{mail}...."
+
     @client.mail._('send').post(request_body: mail.to_json)
   end
 end

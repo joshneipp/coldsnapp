@@ -14,6 +14,8 @@ class DailyForecastWorker
       log_weather_forecast_activity(user.id)
       forecast = ForecastCacheService.new(zip_code).run
 
+      Rails.logger.info "#{Time.zone.now} -- #{self.class.to_s} -- forecast #{forecast.inspect}...."
+
       from = ENV.fetch('SENDGRID_TEST_FROM')
       subject = 'Your daily coldsnapp forecast'
       to = ENV.fetch('SENDGRID_TEST_TO')
