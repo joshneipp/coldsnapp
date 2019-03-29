@@ -4,5 +4,5 @@
     cron: '0 * * * * *' # Run once per minute
     class: UserForecastWorker
   daily_forecast:
-    cron: '0 * * * *' # Run hourly
+    cron: '0 * * * * *' # Run hourly
     class: DailyForecastWorker
