@@ -5,8 +5,8 @@ http_interactions:
     uri: https://api.sendgrid.com/v3/mail/send
     body:
       encoding: UTF-8
-      string: '{"from":{"email":"joshneipp@gmail.com"},"subject":"Test subject from
-        sendgrid","personalizations":[{"to":[{"email":"joshneipp@gmail.com"}]}],"content":[{"type":"text/plain","value":"This
+      string: '{"from":{"email":"<SENDGRID_TEST_FROM>"},"subject":"Test subject from
+        sendgrid","personalizations":[{"to":[{"email":"<SENDGRID_TEST_TO>"}]}],"content":[{"type":"text/plain","value":"This
         is a test SendGrid email from Coldsnapp"}]}'
     headers:
       Accept-Encoding:
@@ -16,7 +16,7 @@ http_interactions:
       User-Agent:
       - sendgrid/5.3.0;ruby
       Authorization:
-      - Bearer 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
+      - Bearer <SENDGRID_API_KEY>
       Content-Type:
       - application/json
   response:
@@ -27,15 +27,13 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Thu, 14 Mar 2019 02:07:12 GMT
-      Content-Type:
-      - text/plain; charset=utf-8
+      - Thu, 28 Mar 2019 17:03:55 GMT
       Content-Length:
       - '0'
       Connection:
       - keep-alive
       X-Message-Id:
-      - 5qLr8AnbQsCfXlcD8MyPoQ
+      - UvurkMKLR-GqQgbTIZrpYw
       Access-Control-Allow-Origin:
       - https://sendgrid.api-docs.io
       Access-Control-Allow-Methods:
@@ -50,5 +48,5 @@ http_interactions:
       encoding: UTF-8
       string: ''
     http_version: 
-  recorded_at: Thu, 14 Mar 2019 02:07:12 GMT
+  recorded_at: Thu, 28 Mar 2019 17:03:54 GMT
 recorded_with: VCR 4.0.0

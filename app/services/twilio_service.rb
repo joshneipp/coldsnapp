@@ -12,6 +12,8 @@ class TwilioService
   end
 
   def send_message(from:, to:, body:)
+    Rails.logger.info "Twilio: " "sending a message..."
+
     @sms_client.messages.create(from: from, to: to, body: body)
   end
 

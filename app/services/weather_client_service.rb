@@ -42,6 +42,115 @@ class WeatherClientService
     JSON.parse(full_forecast)
   end
 
+  def json_forecast_list_items
+    json_forecast['list']
+  end
+
+  def compact_forecast
+    json_forecast_list_items.map do |time|
+      {
+        date_utc: Time.at(time["dt"]).utc.to_date,
+        local_date: Time.at(time["dt"]).to_date,
+        utc_time: Time.at(time["dt"]).utc,
+        local_time: Time.at(time["dt"]),
+        day_of_week: Time.at(time["dt"]).utc.to_date.strftime("%a"),
+        low_day_of_week: (Time.at(time["dt"]).utc.to_date - 1.day).strftime("%a"),
+        min_temp: time['main']['temp_min'],
+        max_temp: time['main']['temp_max'],
+        humidity: time['main']['humidity'],
+        pressure: time['main']['pressure'],
+        description_main: time['weather'][0]['main'],
+        description_full: time['weather'][0]['description'],
+      }
+    end
+  end
+
+  def forecast_by_day_and_night
+    forecast = compact_forecast.group_by do |hash|
+      hash[:time].between?(hash[:time].beginning_of_day + 10.hours, hash[:time].beginning_of_day + 22.hours) ? 'day' : 'night'
+    end
+  end
+
+  def highs_and_lows
+    highs_and_lows = compact_forecast.group_by do |time|
+      time[:local_time].between?(time[:local_time].beginning_of_day, time[:local_time].beginning_of_day + 10.hours) ? 'lows' : 'highs'
+    end
+    return highs_and_lows
+  end
+
+  def lows
+    lows = highs_and_lows.slice('lows')
+    return lows['lows']
+  end
+
+  def highs
+    highs = highs_and_lows.slice('highs')
+    return highs['highs']
+  end
+
+  def low_per_day
+    low_per_day = lows.group_by do |time_block|
+      time_block[:low_day_of_week]
+    end
+    return low_per_day
+  end
+
+  def high_per_day
+    high_per_day = highs.group_by do |time_block|
+      time_block[:day_of_week]
+    end
+    return high_per_day
+  end
+
+  def low_summary
+    summary = {}
+    low_per_day.map do |day|
+      summary[day[0]] = {
+        :min => day[1].min_by { |day| day[:min_temp] }.slice(:min_temp)[:min_temp].round
+      }
+    end
+    return summary
+  end
+
+  def high_summary
+    summary = {}
+    high_per_day.map do |day|
+      summary[day[0]] = {
+        :max => day[1].max_by { |day| day[:max_temp] }.slice(:max_temp)[:max_temp].round
+      }
+    end
+    return summary
+  end
+
+  def high_summary_and_low_summary
+    high = high_summary
+    low = low_summary
+    byebug
+  end
+
+  def forecast_by_date
+    forecast = compact_forecast.group_by { |day| day[:day_of_week] }
+  end
+
+  def compact_forecast_by_date
+    forecast = {}
+    forecast_by_date.group_by do |day|
+      # byebug
+      # forecast.merge!(day[1].min_by { |day| day[:min_temp] }.slice(:min_temp))
+      forecast[day[0]] = {
+        :min => day[1].min_by { |day| day[:min_temp] }.slice(:min_temp)[:min_temp].round,
+        :max => day[1].max_by { |day| day[:max_temp] }.slice(:max_temp)[:max_temp].round
+      }
+      
+    end
+    forecast
+    # forecast_by_date.map do |date|
+    #   date[1].max_by do |time_block|
+    #     time_block[:max_temp]
+    #   end
+    # end
+  end
+
   def five_day_forecast
     json_forecast['list']
   end

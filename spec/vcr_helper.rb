@@ -9,6 +9,9 @@ VCR.configure do |config|
   config.filter_sensitive_data('<TWILIOTO>') { ENV["TWILIO_TEST_SMS_TO"]}
   config.filter_sensitive_data('<AUTHTOKEN>') { ENV["TWILIO_AUTH_TOKEN"]}
   config.filter_sensitive_data('<WEATHERAPIKEY>') { ENV["OPEN_WEATHER_API_KEY"]}
+  config.filter_sensitive_data('<SENDGRID_TEST_FROM>') { ENV["SENDGRID_TEST_FROM"]}
+  config.filter_sensitive_data('<SENDGRID_TEST_TO>') { ENV["SENDGRID_TEST_TO"]}
+  config.filter_sensitive_data('<SENDGRID_API_KEY>') { ENV["SENDGRID_API_KEY"]}
   config.before_record do |i|
     i.response.body.force_encoding('UTF-8')
   end

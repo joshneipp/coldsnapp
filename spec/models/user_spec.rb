@@ -28,6 +28,11 @@ describe User do
       it 'is valid' do
         expect(subject).to be_valid
       end
+
+      it 'sets send daily forecast to false by default' do
+        subject
+        expect(User.find_by(username: username).settings["send_daily_forecast"]).to eq(false)
+      end
     end
 
     context 'without a username' do

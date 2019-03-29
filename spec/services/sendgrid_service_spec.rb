@@ -13,7 +13,7 @@ describe SendgridService do
       let(:content) { 'This is a test SendGrid email from Coldsnapp' }
 
       it 'sends a message' do
-        VCR.use_cassette 'sending email with SendGrid' do
+        VCR.use_cassette 'sendgrid' do
           expect(subject.status_code).to eq('202')
         end
       end
