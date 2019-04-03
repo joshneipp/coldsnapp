@@ -1,10 +1,11 @@
 require 'sendgrid-ruby'
 
-class SendgridService
+class SendgridService < ServiceWithLogging
   include SendGrid
 
   def initialize
     @client = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'], host: 'https://api.sendgrid.com').client
+    super
   end
 
   def run(from, subject, to, content)

@@ -19,7 +19,7 @@ class ForecastCacheService
   end
 
   def fetch_new_forecast
-    low_temperatures = WeatherClientService.new(@zip_code).low_temps
+    low_temperatures = WeatherClientService.new(@zip_code).low_summary_to_s
     CachedForecast.create(zip_code: @zip_code, low_temperatures: low_temperatures)
     low_temperatures
   end

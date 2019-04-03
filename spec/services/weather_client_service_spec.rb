@@ -54,7 +54,7 @@ describe WeatherClientService do
 
     it 'has daytime high temps and nighttime low temps' do
       VCR.use_cassette('daily forecast') do
-        expect(subject.size).to eq(5)
+        expect(subject.size).to eq(6)
       end
     end
   end
@@ -65,7 +65,7 @@ describe WeatherClientService do
 
     it 'has daytime high temps and nighttime low temps' do
       VCR.use_cassette('daily forecast') do
-        expect(subject.size).to eq(5)
+        expect(subject.size).to eq(6)
       end
     end
   end
@@ -88,20 +88,27 @@ describe WeatherClientService do
     subject { WeatherClientService.new(zip_code).lows }
     let(:zip_code) { '27278' }
 
-    it 'returns nighttime lows' do
+    it 'returns lows from the first 10 hours of the day' do
       VCR.use_cassette('lows') do
-        expect(subject.size ).to eq(1)
+        subject.each do |time_block|
+          midnight = time_block[:local_time].beginning_of_day
+          ten_am = (time_block[:local_time].beginning_of_day + 10.hours)
+          expect(time_block[:local_time]).to be_between(midnight, ten_am)
+        end
       end
     end
   end
 
-  describe '#low_per_day' do
-    subject { WeatherClientService.new(zip_code).low_per_day }
+  describe '#all_lows_grouped_by_day' do
+    subject { WeatherClientService.new(zip_code).all_lows_grouped_by_day }
     let(:zip_code) { '27278' }
 
-    it 'returns one low per day' do
-      VCR.use_cassette('low_per_day') do
-        expect(subject.size ).to eq(1)
+    it 'returns the low time blocks grouped by day of the week' do
+      VCR.use_cassette('low_time_blocks_per_day') do
+        subject.keys.each do |day|
+          expect(%(Sun Mon Tue Wed Thu Fri Sat)).to include(day)
+        end
+        expect(subject.size ).to be_between(4, 7)
       end
     end
   end
@@ -112,7 +119,18 @@ describe WeatherClientService do
 
     it 'returns one low per day' do
       VCR.use_cassette('low_summary') do
-        expect(subject.size ).to eq(5)
+        expect(subject.size ).to be_between(4, 7)
+      end
+    end
+  end
+
+  describe '#low_summary_to_s' do
+    subject { WeatherClientService.new(zip_code).low_summary_to_s }
+    let(:zip_code) { '27278' }
+
+    it 'returns a string representation of the low summary' do
+      VCR.use_cassette('low_summary_to_s') do
+        expect(subject.class ).to eq(String)
       end
     end
   end

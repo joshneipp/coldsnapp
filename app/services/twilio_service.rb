@@ -1,14 +1,15 @@
 require 'twilio-ruby'
 
-Message = Struct.new(:from, :to, :body)
-
-class TwilioService
+class TwilioService < ServiceWithLogging
 
   def initialize()
+    # Rails.logger.info "Twilio: " "sending a message..."
+
     @sms_client = Twilio::REST::Client.new(
       ENV.fetch("TWILIO_ACCOUNT_SID"),
       ENV.fetch("TWILIO_AUTH_TOKEN")
     )
+    super
   end
 
   def send_message(from:, to:, body:)

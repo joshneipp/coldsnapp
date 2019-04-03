@@ -2,6 +2,16 @@ require 'rails_helper'
 
 describe SendgridService do
 
+  describe '#initialize' do
+
+    subject { SendgridService.new }
+
+    it 'logs to the Rails logs' do
+      expect(Rails.logger).to receive(:info).with(/Running SendgridService/)
+      subject
+    end
+  end
+
   describe '.run' do
 
     context 'success' do

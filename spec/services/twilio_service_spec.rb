@@ -12,6 +12,12 @@ describe TwilioService do
         body: 'This is a test from twilio_service_spec.rb'
       }
     }
+
+    it 'logs a message in the Rails logs upon initialization' do
+      expect(Rails.logger).to receive(:info).with(/Running TwilioService/)
+      client
+    end
+
     it 'sends a message' do
       VCR.use_cassette 'sends a message' do
         expect { subject }.to change { client.message_list.size }.by(+1)

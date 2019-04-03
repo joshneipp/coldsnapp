@@ -88,14 +88,14 @@ class WeatherClientService
     return highs['highs']
   end
 
-  def low_per_day
+  def all_lows_grouped_by_day
     low_per_day = lows.group_by do |time_block|
       time_block[:low_day_of_week]
     end
     return low_per_day
   end
 
-  def high_per_day
+  def high_time_blocks_per_day
     high_per_day = highs.group_by do |time_block|
       time_block[:day_of_week]
     end
@@ -104,20 +104,28 @@ class WeatherClientService
 
   def low_summary
     summary = {}
-    low_per_day.map do |day|
-      summary[day[0]] = {
-        :min => day[1].min_by { |day| day[:min_temp] }.slice(:min_temp)[:min_temp].round
-      }
+    all_lows_grouped_by_day.map do |day|
+      min_for_day = day[1].min_by { |day| day[:min_temp] }.slice(:min_temp)[:min_temp].round
+      summary[day[0]] = min_for_day
+      # summary[day[0]] = {
+      #   :min => day[1].min_by { |day| day[:min_temp] }.slice(:min_temp)[:min_temp].round
+      # }
     end
     return summary
   end
 
+  def low_summary_to_s
+    low_summary.to_s
+  end
+
   def high_summary
     summary = {}
-    high_per_day.map do |day|
-      summary[day[0]] = {
-        :max => day[1].max_by { |day| day[:max_temp] }.slice(:max_temp)[:max_temp].round
-      }
+    high_time_blocks_per_day.map do |day|
+      max_for_day = day[1].max_by { |day| day[:max_temp] }.slice(:max_temp)[:max_temp].round
+      summary[day[0]] = max_for_day
+      # summary[day[0]] = {
+      #   :max => day[1].max_by { |day| day[:max_temp] }.slice(:max_temp)[:max_temp].round
+      # }
     end
     return summary
   end
@@ -125,7 +133,6 @@ class WeatherClientService
   def high_summary_and_low_summary
     high = high_summary
     low = low_summary
-    byebug
   end
 
   def forecast_by_date
@@ -135,7 +142,6 @@ class WeatherClientService
   def compact_forecast_by_date
     forecast = {}
     forecast_by_date.group_by do |day|
-      # byebug
       # forecast.merge!(day[1].min_by { |day| day[:min_temp] }.slice(:min_temp))
       forecast[day[0]] = {
         :min => day[1].min_by { |day| day[:min_temp] }.slice(:min_temp)[:min_temp].round,
