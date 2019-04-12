@@ -104,7 +104,7 @@ class WeatherClientService
   def low_summary_to_s
     summary = "Lows:\n"
     low_summary.each do |key, val|
-      summary += "#{key}: #{val}\n"
+      summary += "#{key}: #{val}\n\n"
     end
     summary
   end
@@ -121,7 +121,7 @@ class WeatherClientService
   def high_summary_to_s
     summary = "Highs:\n"
     high_summary.each do |key, val|
-      summary += "#{key}: #{val}\n"
+      summary += "#{key}: #{val}\n\n"
     end
     summary
   end

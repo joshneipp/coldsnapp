@@ -1,8 +1,8 @@
 :logfile: ./log/development.log
 :schedule:
   user_forecast:
-    cron: '0 * * * *' # Run once per hour
+    cron: '0 */3 * * *' # Run once every 3 hours
     class: UserForecastWorker
   daily_forecast:
-    cron: '0 * * * * *' # Run hourly
+    cron: '0 */3 * * *' # Run once every 3 hours
     class: DailyForecastWorker
