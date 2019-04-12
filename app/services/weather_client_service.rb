@@ -65,57 +65,48 @@ class WeatherClientService
     end
   end
 
-  def forecast_by_day_and_night
-    forecast = compact_forecast.group_by do |hash|
-      hash[:time].between?(hash[:time].beginning_of_day + 10.hours, hash[:time].beginning_of_day + 22.hours) ? 'day' : 'night'
-    end
-  end
-
   def highs_and_lows
-    highs_and_lows = compact_forecast.group_by do |time|
+    compact_forecast.group_by do |time|
       time[:local_time].between?(time[:local_time].beginning_of_day, time[:local_time].beginning_of_day + 10.hours) ? 'lows' : 'highs'
     end
-    return highs_and_lows
-  end
-
-  def lows
-    lows = highs_and_lows.slice('lows')
-    return lows['lows']
   end
 
   def highs
-    highs = highs_and_lows.slice('highs')
-    return highs['highs']
+    highs_and_lows.slice('highs')['highs']
+  end
+  
+  def lows
+    highs_and_lows.slice('lows')['lows']
   end
 
-  def all_lows_grouped_by_day
-    low_per_day = lows.group_by do |time_block|
+  def lows_grouped_by_day
+    lows.group_by do |time_block|
       time_block[:low_day_of_week]
     end
-    return low_per_day
   end
 
   def high_time_blocks_per_day
     high_per_day = highs.group_by do |time_block|
       time_block[:day_of_week]
     end
-    return high_per_day
+    high_per_day
   end
 
   def low_summary
     summary = {}
-    all_lows_grouped_by_day.map do |day|
+    lows_grouped_by_day.map do |day|
       min_for_day = day[1].min_by { |day| day[:min_temp] }.slice(:min_temp)[:min_temp].round
       summary[day[0]] = min_for_day
-      # summary[day[0]] = {
-      #   :min => day[1].min_by { |day| day[:min_temp] }.slice(:min_temp)[:min_temp].round
-      # }
     end
-    return summary
+    summary
   end
 
   def low_summary_to_s
-    low_summary.to_s
+    summary = "Lows:\n"
+    low_summary.each do |key, val|
+      summary += "#{key}: #{val}\n"
+    end
+    summary
   end
 
   def high_summary
@@ -123,11 +114,16 @@ class WeatherClientService
     high_time_blocks_per_day.map do |day|
       max_for_day = day[1].max_by { |day| day[:max_temp] }.slice(:max_temp)[:max_temp].round
       summary[day[0]] = max_for_day
-      # summary[day[0]] = {
-      #   :max => day[1].max_by { |day| day[:max_temp] }.slice(:max_temp)[:max_temp].round
-      # }
     end
-    return summary
+    summary
+  end
+
+  def high_summary_to_s
+    summary = "Highs:\n"
+    high_summary.each do |key, val|
+      summary += "#{key}: #{val}\n"
+    end
+    summary
   end
 
   def high_summary_and_low_summary

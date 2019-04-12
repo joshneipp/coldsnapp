@@ -34,7 +34,16 @@ describe WeatherClientService do
     it 'returns min and max temp and description with each time block' do
       VCR.use_cassette('compact forecast') do
         subject.each do |time_block|
-          %w(date time max_temp min_temp description_full).each do |key|
+          %w(
+            date_utc 
+            local_date 
+            utc_time 
+            local_time 
+            day_of_week 
+            max_temp 
+            min_temp 
+            description_full
+          ).each do |key|
             expect(time_block).to have_key(key.to_sym)
           end
         end
@@ -77,7 +86,7 @@ describe WeatherClientService do
     it 'splits the forecast into highs and lows' do
       VCR.use_cassette('nighttime_low_time_blocks') do
         expect(subject.size).to eq(2)
-        %w(highs lows).each do |key| 
+        %w(highs lows).each do |key|
           expect(subject).to have_key(key)
         end
       end
@@ -99,16 +108,31 @@ describe WeatherClientService do
     end
   end
 
-  describe '#all_lows_grouped_by_day' do
-    subject { WeatherClientService.new(zip_code).all_lows_grouped_by_day }
+  describe '#lows_grouped_by_day' do
+    subject { WeatherClientService.new(zip_code).lows_grouped_by_day }
     let(:zip_code) { '27278' }
 
     it 'returns the low time blocks grouped by day of the week' do
-      VCR.use_cassette('low_time_blocks_per_day') do
+      VCR.use_cassette('lows_grouped_by_day') do
         subject.keys.each do |day|
           expect(%(Sun Mon Tue Wed Thu Fri Sat)).to include(day)
+          expect(day.size).to be > 1
         end
         expect(subject.size ).to be_between(4, 7)
+      end
+    end
+
+    it 'returns 5 or 6 days worth of lows' do
+      VCR.use_cassette('lows_grouped_by_day') do
+        expect(subject.size ).to be_between(4, 7)
+      end
+    end
+
+    it 'returns multiple time blocks per day' do
+      VCR.use_cassette('lows_grouped_by_day') do
+        subject.each do |day|
+          expect(day[1].size).to be > 1
+        end
       end
     end
   end
@@ -117,7 +141,7 @@ describe WeatherClientService do
     subject { WeatherClientService.new(zip_code).low_summary }
     let(:zip_code) { '27278' }
 
-    it 'returns one low per day' do
+    it 'returns 5 or 6 days worth of lows' do
       VCR.use_cassette('low_summary') do
         expect(subject.size ).to be_between(4, 7)
       end
@@ -141,7 +165,7 @@ describe WeatherClientService do
 
     it 'returns one low per day' do
       VCR.use_cassette('high_summary') do
-        expect(subject.size ).to eq(5)
+        expect(subject.size ).to be_between(4, 7)
       end
     end
   end
@@ -153,17 +177,6 @@ describe WeatherClientService do
     it 'returns one low per day' do
       VCR.use_cassette('high_summary_and_low_summary') do
         expect(subject.size ).to eq(5)
-      end
-    end
-  end
-
-  describe '#forecast_by_day_and_night' do
-    subject { WeatherClientService.new(zip_code).forecast_by_day_and_night }
-    let(:zip_code) { '27278' }
-
-    it 'has daytime high temps and nighttime low temps' do
-      VCR.use_cassette('daily forecast') do
-        expect(subject.size).to eq(6)
       end
     end
   end
